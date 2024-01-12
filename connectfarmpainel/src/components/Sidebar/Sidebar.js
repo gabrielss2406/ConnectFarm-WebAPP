@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import Logo from '../static/logo.png';
-import DataAnalisys from '../static/dataAnalisys.png';
-import DataAnalisysGray from '../static/dataAnalisys_gray.png';
-import DashBoard from '../static/dashboard.png';
-import DashBoardGray from '../static/dashboard_gray.png';
-import Performance from '../static/performance.png';
-import PerformanceGray from '../static/performance_gray.png';
+import Logo from '../../static/logo.png';
+import DataAnalisys from '../../static/dataAnalisys.png';
+import DataAnalisysGray from '../../static/dataAnalisys_gray.png';
+import DashBoard from '../../static/dashboard.png';
+import DashBoardGray from '../../static/dashboard_gray.png';
+import Performance from '../../static/performance.png';
+import PerformanceGray from '../../static/performance_gray.png';
 
 function Sidebar() {
   const [isDataAnalisysHovered, setIsDataAnalisysHovered] = useState(false);
