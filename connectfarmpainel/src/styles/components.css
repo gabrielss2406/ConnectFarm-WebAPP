@@ -1,0 +1,6 @@
+.option-btn {
+    @apply flex justify-start items-center;
+    @apply w-4/5 h-8 px-2 py-4;
+    @apply text-[#8E8D8D] text-[10pt] font-bold;
+    @apply hover:bg-[#4D4D4D] hover:rounded hover:text-[#E4E2E2];
+}
