@@ -1,4 +1,4 @@
-import InformationExpenses from "@/components/InformationExpenses";
+import InformationExpenses from "@/components/HomePage/InformationExpenses";
 
 export default function Home() {
   return (
