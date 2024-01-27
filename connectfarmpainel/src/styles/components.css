@@ -4,3 +4,7 @@
     @apply text-[#8E8D8D] text-[10pt] font-bold;
     @apply hover:bg-[#4D4D4D] hover:rounded hover:text-[#E4E2E2];
 }
+
+.radial-startpage-gradient {
+    background: radial-gradient(ellipse at center, rgba(69, 181, 58, 0.65) 0%, rgba(69, 181, 58, 0) 60%)
+}
