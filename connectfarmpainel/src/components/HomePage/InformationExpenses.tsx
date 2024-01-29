@@ -1,7 +1,7 @@
-import MoneyBag from '@/static/moneyBag.png';
-import MoneyBagGray from '@/static/moneyBagGray.png';
+import MoneyBag from '@/static/money_bag.png';
+import MoneyBagGray from '@/static/money_bag_gray.png';
 import List from '@/static/list.png';
-import ListGray from '@/static/listGray.png';
+import ListGray from '@/static/list_gray.png';
 
 interface InformationExpensesProps {
     amount: number
