@@ -6,11 +6,16 @@ export default function About() {
   return (
     <div>
       <Navbar />
-      <div className="flex flex-col gap-40 min-h-screen bg-[#2a2a2a]">
-        <div className={`
-          min-h-screen flex flex-col items-center justify-center
-          radial-startpage-gradient gap-5
-        `}>
+      <div className="flex flex-col gap-40 min-h-screen bg-[#2a2a2a] text-white">
+        <div
+          className="
+            min-h-screen flex flex-col items-center justify-center
+            radial-startpage-gradient gap-5
+          "
+          style={{
+            background: 'radial-gradient(ellipse at center, rgba(69, 181, 58, 0.65) 0%, rgba(69, 181, 58, 0) 60%)'
+          }}
+        >          
           <div className="mt-4 text-6xl font-semibold">
             ConnectFarm
           </div>
