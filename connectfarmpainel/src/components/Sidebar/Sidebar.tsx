@@ -21,7 +21,7 @@ export default function Sidebar() {
         <img className="w-8 h-8 mr-1" src={Logo.src} alt="connectFarm-logo" />
         <h1 className='text-white font-semibold text-lg'>ConnectFarm</h1>
       </div>
-      <div className="flex flex-col justify-center items-center w-full gap-4">
+      <div className="flex flex-col justify-center w-full gap-4">
         <div className="flex w-full items-center justify-start pl-[20px]">
           <h2 className='text-[#8E8D8D] text-[8pt] font-bold'>OPTIONS</h2>
         </div>

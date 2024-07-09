@@ -17,7 +17,9 @@ export default function SidebarRoutes(props: SidebarRoutes) {
 
   return (
     <Link href={props.routeName}
-      className={`option-btn ${router.pathname === props.routeName ? 'bg-[#4D4D4D] rounded text-[#E4E2E2]' : ''}`}
+      className={`flex justify-start items-center w-4/5 h-8 px-2 py-4
+        text-[#8E8D8D] text-[10pt] font-bold hover:bg-[#4D4D4D] hover:rounded hover:text-[#E4E2E2]
+        ${router.pathname === props.routeName ? 'bg-[#4D4D4D] rounded text-[#E4E2E2]' : ''}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}>
         <img

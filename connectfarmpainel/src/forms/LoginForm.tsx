@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/shared/ui/button";
 import { LoginSchema, LoginType } from "@/schemas/User";
 
-export default function About() {
+export default function LoginForm() {
     
     const form = useForm<LoginType>({
         mode: "all",
@@ -54,7 +54,7 @@ export default function About() {
                   </FormControl>
                   <FormMessage />
                   <a href="/" className="w-1/2">
-                    <Button className="p-1 text-xs" variant={"link"} type="button">Esqueceu a senha?</Button>
+                    <Button className="p-1 text-xs italic" variant={"link"} type="button">Esqueceu a senha?</Button>
                   </a>
                 </FormItem>
               )}

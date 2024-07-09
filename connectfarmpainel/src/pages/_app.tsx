@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
-  const pagesWithoutSidebar = ['/', '/login'];
+  const pagesWithoutSidebar = ['/', '/login', '/register'];
 
   const shouldRenderSidebar = !pagesWithoutSidebar.includes(router.pathname);
 

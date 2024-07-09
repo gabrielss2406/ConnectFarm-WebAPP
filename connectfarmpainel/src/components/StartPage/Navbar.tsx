@@ -11,7 +11,7 @@ export default function Navbar() {
         `}>
           <a href="/" className="text-white hover:text-gray-300 mt-2">Página inicial</a>
           <a href="/painel" className="text-white hover:text-gray-300 mt-2">Assinar Painel</a>
-          <a href="#" className="text-white hover:text-gray-300 mt-2">Registrar</a>
+          <a href="/register" className="text-white hover:text-gray-300 mt-2">Registrar</a>
           <a href="/login" className="text-white hover:text-gray-300 mt-2">Entrar</a>
           <a href="#" className="text-white hover:text-gray-300">
             <div className={`
