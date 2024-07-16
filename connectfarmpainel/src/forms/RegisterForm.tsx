@@ -1,10 +1,10 @@
 import { Input } from "@/components/shared/ui/input";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/shared/ui/form";
-import { z } from "zod";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/shared/ui/form";
 import { useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/shared/ui/button";
 import { LoginSchema, LoginType } from "@/schemas/User";
+import { UserService } from "@/services/user";
 
 export default function RegisterForm() {
     
@@ -13,8 +13,8 @@ export default function RegisterForm() {
         resolver: zodResolver(LoginSchema),
       })
 
-      function onSubmit(values: LoginType) {
-        console.log(values)
+      async function onSubmit(values: LoginType) {
+        console.log("submit")
       }
 
       return (

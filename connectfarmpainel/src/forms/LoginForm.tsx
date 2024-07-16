@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/shared/ui/button";
 import { LoginSchema, LoginType } from "@/schemas/User";
+import { UserService } from "@/services/user";
 
 export default function LoginForm() {
     
@@ -13,8 +14,14 @@ export default function LoginForm() {
         resolver: zodResolver(LoginSchema),
       })
 
-      function onSubmit(values: LoginType) {
-        console.log(values)
+      async function onSubmit(values: LoginType) {
+        const userService = new UserService();
+        try {
+          const response = await userService.login(values.email, values.password);
+          console.log('Login successful', response);
+        } catch (error) {
+          console.error('Erro ao fazer login:', error);
+        }
       }
 
       return (
