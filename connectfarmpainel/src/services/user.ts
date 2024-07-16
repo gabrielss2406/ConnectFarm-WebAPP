@@ -1,6 +1,8 @@
 import api from './api';
 import Cookies from 'js-cookie';
+import dotenv from 'dotenv';
 
+dotenv.config();
 export class UserService {
   public async login(username: string, password: string) {
     try {

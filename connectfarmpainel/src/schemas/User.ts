@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 export const LoginSchema = z.object({
-    email: z.string({ required_error: "Campo obrigatório" }).max(80),
-    password: z.string({ required_error: "Campo obrigatório" }).max(30)
+    email: z.string({ required_error: "Email obrigatório" }).max(80),
+    password: z.string({ required_error: "Senha obrigatória" }).max(30)
 })
 
 export const RegisterSchema = z.object({

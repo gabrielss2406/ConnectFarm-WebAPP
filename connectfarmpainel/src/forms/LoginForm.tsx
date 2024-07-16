@@ -6,8 +6,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/shared/ui/button";
 import { LoginSchema, LoginType } from "@/schemas/User";
 import { UserService } from "@/services/user";
+import { useState } from "react";
+import { ButtonCustom } from "@/components/shared/ui/button-custom";
 
 export default function LoginForm() {
+    const [loading, setLoading] = useState(false);
     
     const form = useForm<LoginType>({
         mode: "all",
@@ -16,18 +19,21 @@ export default function LoginForm() {
 
       async function onSubmit(values: LoginType) {
         const userService = new UserService();
+        setLoading(true);
         try {
           const response = await userService.login(values.email, values.password);
           console.log('Login successful', response);
         } catch (error) {
           console.error('Erro ao fazer login:', error);
+        } finally {
+          setLoading(false);
         }
       }
 
       return (
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="h-full w-[50%] p-10 space-y-6 flex flex-col items-center">
-            <FormLabel className="text-3xl text-white">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="h-full w-[50%] p-10 space-y-3 flex flex-col items-center">
+            <FormLabel className="text-3xl mb-5 text-white">
               Login
             </FormLabel>
             <FormField
@@ -39,11 +45,13 @@ export default function LoginForm() {
                     <Input
                       placeholder="Insira seu email"
                       type="email"
-                      className="w-full"
                       {...field}
                     />
                   </FormControl>
-                  <FormMessage />
+                  <div className="flex flex-row justify-between">
+                    <div className="min-h-[1.25rem]"/>
+                    <FormMessage className="absolute"/>
+                  </div>
                 </FormItem>
               )}
             />
@@ -59,10 +67,10 @@ export default function LoginForm() {
                       {...field}
                     />
                   </FormControl>
-                  <FormMessage />
-                  <a href="/" className="w-1/2">
-                    <Button className="p-1 text-xs italic" variant={"link"} type="button">Esqueceu a senha?</Button>
-                  </a>
+                  <div className="flex flex-row justify-between">
+                    <div className="min-h-[1.25rem]"/>
+                    <FormMessage className="absolute"/>
+                  </div>
                 </FormItem>
               )}
             />
@@ -70,7 +78,12 @@ export default function LoginForm() {
               <a href="/" className="w-1/2">
                 <Button className="w-full" variant={"outline"} type="button">Registrar</Button>
               </a>
-              <Button className="w-1/2" variant={"secondary"} type="submit">Entrar</Button>
+              <div className="w-1/2 flex flex-col items-center">
+                <ButtonCustom className="w-full" variant={"secondary"} type="submit" isLoading={loading}>Entrar</ButtonCustom>
+                <a href="/">
+                    <Button className="p-0 text-xs italic" variant={"link"} type="button">Esqueceu a senha?</Button>
+                  </a>
+              </div>
             </div>
           </form>
         </Form>

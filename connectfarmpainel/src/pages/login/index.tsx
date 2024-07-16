@@ -1,4 +1,3 @@
-import CardGroup from '@/components/StartPage/CardGroup';
 import Navbar from '@/components/StartPage/Navbar';
 import LoginForm from '@/forms/LoginForm';
 import Image from "next/image"
