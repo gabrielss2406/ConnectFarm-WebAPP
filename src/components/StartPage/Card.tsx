@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 interface CardProps {
     title: string
     text: string
@@ -13,10 +15,12 @@ export default function Card(props: CardProps) {
             border border-transparent rounded-3xl
             hover:border-zinc-400 hover:bg-[#A2CE9B] hover:bg-opacity-15
         `}>
-            <img
+            <Image
                 className="w-10 h-10"
                 src={props.icon}
                 alt={"finance"+"-icon"}
+                width={10}
+                height={10}
             />
             <div className="text-xl font-bold">{props.title}</div>
             <div className="text-base">

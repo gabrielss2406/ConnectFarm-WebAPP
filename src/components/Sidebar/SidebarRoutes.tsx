@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Image from 'next/image';
 import { useState } from "react";
 
 interface SidebarRoutes {
@@ -22,10 +23,12 @@ export default function SidebarRoutes(props: SidebarRoutes) {
         ${router.pathname === props.routeName ? 'bg-[#4D4D4D] rounded text-[#E4E2E2]' : ''}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}>
-        <img
+        <Image
           className="w-6 h-6 mr-1"
           src={isHovered ? props.mainIcon.src : props.altIcon.src}
           alt={props.pageName+"-icon"}
+          width={6}
+          height={6}
         />
         {props.pageName}
     </Link>

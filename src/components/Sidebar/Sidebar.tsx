@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import Logo from '@/static/logo.png';
 import DataAnalisys from '@/static/dataAnalisys.png';
 import DataAnalisysGray from '@/static/dataAnalisys_gray.png';
@@ -18,7 +19,7 @@ export default function Sidebar() {
         flex items-center justify-start
         w-full py-4 px-3
       `}>
-        <img className="w-8 h-8 mr-1" src={Logo.src} alt="connectFarm-logo" />
+        <Image className="w-8 h-8 mr-1" src={Logo} alt="connectFarm-logo" width={32} height={32} />
         <h1 className='text-white font-semibold text-lg'>ConnectFarm</h1>
       </div>
       <div className="flex flex-col justify-center w-full gap-4">
@@ -27,9 +28,9 @@ export default function Sidebar() {
         </div>
         
         <div className="flex flex-col items-center justify-between w-full gap-3">
-          <SidebarRoutes mainIcon={DataAnalisys} altIcon={DataAnalisysGray} pageName="DataAnalisys" routeName="/painel"/>
-          <SidebarRoutes mainIcon={Performance} altIcon={PerformanceGray} pageName="Performance" routeName="/"/>
-          <SidebarRoutes mainIcon={DashBoard} altIcon={DashBoardGray} pageName="DashBoard" routeName="/"/>
+          <SidebarRoutes mainIcon={DataAnalisys} altIcon={DataAnalisysGray} pageName="DataAnalisys" routeName="/painel" />
+          <SidebarRoutes mainIcon={Performance} altIcon={PerformanceGray} pageName="Performance" routeName="/" />
+          <SidebarRoutes mainIcon={DashBoard} altIcon={DashBoardGray} pageName="DashBoard" routeName="/" />
         </div>
         
       </div>
