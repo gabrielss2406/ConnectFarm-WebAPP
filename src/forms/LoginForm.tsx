@@ -8,6 +8,7 @@ import { UserService } from "@/services/user";
 import { useState } from "react";
 import { ButtonCustom } from "@/components/shared/ui/button-custom";
 import { toast } from "sonner";
+import Link from "next/link";
 
 export default function LoginForm() {
   const [loading, setLoading] = useState(false);
@@ -75,14 +76,14 @@ export default function LoginForm() {
           )}
         />
         <div className="flex justify-between w-full gap-4">
-          <a href="/" className="w-1/2">
+          <Link href="/" className="w-1/2">
             <Button className="w-full" variant={"outline"} type="button">Registrar</Button>
-          </a>
+          </Link>
           <div className="w-1/2 flex flex-col items-center">
             <ButtonCustom className="w-full" variant={"secondary"} type="submit" isLoading={loading}>Entrar</ButtonCustom>
-            <a href="/">
+            <Link href="/">
               <Button className="p-0 text-xs italic" variant={"link"} type="button">Esqueceu a senha?</Button>
-            </a>
+            </Link>
           </div>
         </div>
       </form>

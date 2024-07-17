@@ -1,4 +1,5 @@
 import { IconUserFilled } from '@tabler/icons-react';
+import Link from 'next/link';
 import React from 'react';
 
 export default function Navbar() {
@@ -9,11 +10,11 @@ export default function Navbar() {
           flex px-5 gap-5 md:gap-20
           font-500 text-sm
         `}>
-          <a href="/" className="text-white hover:text-gray-300 mt-2">Página inicial</a>
-          <a href="/painel" className="text-white hover:text-gray-300 mt-2">Assinar Painel</a>
-          <a href="/register" className="text-white hover:text-gray-300 mt-2">Registrar</a>
-          <a href="/login" className="text-white hover:text-gray-300 mt-2">Entrar</a>
-          <a href="#" className="text-white hover:text-gray-300">
+          <Link href="/" className="text-white hover:text-gray-300 mt-2">Página inicial</Link>
+          <Link href="/painel" className="text-white hover:text-gray-300 mt-2">Assinar Painel</Link>
+          <Link href="/register" className="text-white hover:text-gray-300 mt-2">Registrar</Link>
+          <Link href="/login" className="text-white hover:text-gray-300 mt-2">Entrar</Link>
+          <Link href="#" className="text-white hover:text-gray-300">
             <div className={`
               flex items-center py-2 pl-3 pr-4
               bg-[#404440] rounded-full
@@ -21,7 +22,7 @@ export default function Navbar() {
               <IconUserFilled className="mr-2" />
               <span>Contato</span>
             </div>
-          </a>
+          </Link>
         </div>
       </div>
     </nav>
