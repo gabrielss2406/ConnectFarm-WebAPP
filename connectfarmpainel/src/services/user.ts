@@ -1,6 +1,7 @@
 import api from './api';
 import Cookies from 'js-cookie';
 import dotenv from 'dotenv';
+import { RegisterType } from '@/schemas/User';
 
 dotenv.config();
 export class UserService {
@@ -10,7 +11,11 @@ export class UserService {
       formData.append('username', username);
       formData.append('password', password);
       
-      const response = await api.post('/user/login', formData);
+      const response = await api.post('/user/login', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        }
+      });
 
       if (response.data.access_token) {
         const expires = 600 / 1440;
@@ -20,6 +25,20 @@ export class UserService {
       return response.data;
     } catch (error) {
       console.error('Erro ao fazer login:', error);
+      throw new Error('Login failed');
+    }
+  }
+
+  
+  public async register(values : RegisterType) {
+    try {
+      const { confirmPassword, ...data } = values;
+      
+      const response = await api.post('/user/register', data);
+
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao fazer cadastro:', error);
       throw new Error('Login failed');
     }
   }

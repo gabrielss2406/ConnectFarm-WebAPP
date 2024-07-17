@@ -18,7 +18,7 @@ export default function About() {
           zIndex: 0
         }}
       />
-        <div className='bg-white bg-opacity-65 z-10'>
+        <div className='bg-white bg-opacity-65 z-10 mt-16 mb-4'>
           <RegisterForm />
         </div>
       </div>
