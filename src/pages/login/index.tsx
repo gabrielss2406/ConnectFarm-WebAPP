@@ -19,9 +19,11 @@ export default function About() {
           zIndex: 0
         }}
       />
-        <div className='bg-white flex flex-row flex-wrap columns-2 w-max items-center bg-opacity-65 z-10'>
-          <Image src={"/login/login_background.png"} alt="Login Background" width={400} height={100} className='w-1/2'/>
-          <LoginForm />
+        <div className='bg-white flex flex-row flex-wrap md:columns-2 w-max items-center bg-opacity-65 z-10 rounded-md'>
+          <Image src={"/login/login_background.png"} alt="Login Background" width={400} height={100} className='w-1/2 md:block hidden'/>
+          <div className='md:w-1/2'>
+            <LoginForm />
+          </div>
         </div>
       </div>
     </div>

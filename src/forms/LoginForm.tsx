@@ -33,7 +33,7 @@ export default function LoginForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="h-full w-[50%] p-10 space-y-3 flex flex-col items-center">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="h-full w-[100%] p-10 space-y-3 flex flex-col items-center">
         <FormLabel className="text-3xl mb-5 text-white">
           Login
         </FormLabel>
