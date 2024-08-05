@@ -1,5 +1,5 @@
 import InformationExpenses from "@/components/HomePage/InformationExpenses";
-import { SelectFarm } from "@/components/PainelPage/selectFarm";
+import { SelectFarm } from "@/components/PainelPage/SelectFarm";
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { ApexOptions } from 'apexcharts';
