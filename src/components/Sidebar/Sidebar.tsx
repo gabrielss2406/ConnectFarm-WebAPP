@@ -12,28 +12,26 @@ import { Sheet, SheetContent, SheetHeader, SheetTrigger } from '../shared/ui/she
 import { Button } from '../shared/ui/button';
 import Link from 'next/link';
 import { AlignJustify } from 'lucide-react';
-import { IconUserFilled } from '@tabler/icons-react';
 
 export default function Sidebar() {
   return (
     <nav>
-      {/* Mobile Sidebar */}
       <div className='sm:hidden fixed'>
         <Sheet>
           <SheetTrigger asChild>
-            <Button className='bg-[#2D6432]'><AlignJustify /></Button>
+            <Button className='bg-[#303030]'><AlignJustify /></Button>
           </SheetTrigger>
           <SheetContent side={"left"}>
             <SheetHeader>
-              <div className="mt-4 text-2xl text-white font-semibold">
-                ConnectFarm
+              <div className="mt-4 text-2xl text-white font-semibold flex flex-col items-center">
+                <Image className="w-8 h-8 mr-1" src={Logo} alt="connectFarm-logo" width={32} height={32} />
+                <h1 className='text-white font-semibold text-lg'>ConnectFarm</h1>
               </div>
             </SheetHeader>
             <div className="grid gap-4 py-4 justify-center mt-4">
               <Link href="/painel" className="text-white hover:text-gray-300 mt-2 text-center">DataAnalisys</Link>
               <Link href="/painel" className="text-white hover:text-gray-300 mt-2 text-center">Performance</Link>
-              <Link href="/painel" className="text-white hover:text-gray-300 mt-2 text-center">DashBoard</Link>
-              <Link href="/painel" className="text-white hover:text-gray-300 mt-2 text-center">Entrar</Link>
+              <Link href="/painel" className="text-white hover:text-gray-300 mt-2 text-center">Dashboard</Link>
             </div>
           </SheetContent>
         </Sheet>

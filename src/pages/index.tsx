@@ -2,6 +2,9 @@ import { useRef } from 'react';
 import CardGroup from '@/components/StartPage/CardGroup';
 import Navbar from '@/components/StartPage/Navbar';
 import { IconArrowNarrowDown } from '@tabler/icons-react';
+import Image from 'next/image';
+import Logo from '@/static/logo.png';
+
 
 export default function About() {
   const servicesRef = useRef<HTMLDivElement>(null);
@@ -25,7 +28,8 @@ export default function About() {
             background: 'radial-gradient(ellipse at center, rgba(69, 181, 58, 0.65) 0%, rgba(69, 181, 58, 0) 60%)'
           }}
         >          
-          <div className="mt-4 text-6xl font-semibold">
+          <div className="mt-4 text-6xl font-semibold flex flex-col items-center">
+            <Image className="w-30 h-30 mr-1" src={Logo} alt="connectFarm-logo" />
             ConnectFarm
           </div>
           <div className="text-md font-semibold">

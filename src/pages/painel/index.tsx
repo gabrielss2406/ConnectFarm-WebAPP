@@ -32,9 +32,9 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex flex-col h-full bg-[#F1F1F1] sm:ml-[15%]">
-      <div className="p-5 bg-white flex w-full items-center justify-between">
-        <h1 className="text-black text-[14pt] font-bold">Data Analysis</h1>
+    <div className="flex flex-col h-full bg-[#F1F1F1] sm:ml-[15%]"> {/* Fundo da tela */}
+      <div className="p-5 bg-white flex w-full items-center justify-between border-b border-gray-200"> {/* Cabeçalho */}
+        <h1 className="text-black text-[14pt] font-bold">Data Analysis</h1> {/* Cor do texto do cabeçalho */}
         <SelectFarm farms={farms} activeFarm={activeFarm} setActiveFarm={setActiveFarm} />
       </div>
       <div className="flex w-full h-auto flex-wrap justify-around gap-4 pt-4 flex-row p-10">
@@ -48,13 +48,13 @@ export default function Home() {
           options={chartOptions}
           series={chartSeries}
           type="line"
-          width="500"
+          width="380"
         />
         <Chart
           options={chartOptions}
           series={chartSeries}
           type="bar"
-          width="500"
+          width="380"
         />
         <Chart
           options={{}}
