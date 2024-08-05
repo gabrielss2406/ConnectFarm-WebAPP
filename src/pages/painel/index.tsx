@@ -32,7 +32,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex flex-col h-full bg-[#F1F1F1] pl-[15%]">
+    <div className="flex flex-col h-full bg-[#F1F1F1] sm:ml-[15%]">
       <div className="p-5 bg-white flex w-full items-center justify-between">
         <h1 className="text-black text-[14pt] font-bold">Data Analysis</h1>
         <SelectFarm farms={farms} activeFarm={activeFarm} setActiveFarm={setActiveFarm} />
@@ -42,21 +42,27 @@ export default function Home() {
         <InformationExpenses expenseType="Lucro" amount={45.67} invertColor={true} />
         <InformationExpenses expenseType="Lucro" amount={45.67} invertColor={false} />
         <InformationExpenses expenseType="Lucro" amount={45.67} invertColor={true} />
-        <InformationExpenses expenseType="Lucro" amount={45.67} invertColor={false} />
       </div>
-      <Chart
-        options={chartOptions}
-        series={chartSeries}
-        type="line"
-        width="500"
-      />
-      <Chart
-        options={chartOptions}
-        series={chartSeries}
-        type="bar"
-        width="500"
-      />
-      <Chart options={{}} series={[44, 55, 41, 17, 15]} type="donut" width="380" />
+      <div className="flex flex-col items-center gap-4 p-10">
+        <Chart
+          options={chartOptions}
+          series={chartSeries}
+          type="line"
+          width="500"
+        />
+        <Chart
+          options={chartOptions}
+          series={chartSeries}
+          type="bar"
+          width="500"
+        />
+        <Chart
+          options={{}}
+          series={[44, 55, 41, 17, 15]}
+          type="donut"
+          width="380"
+        />
+      </div>
     </div>
   );
 }
