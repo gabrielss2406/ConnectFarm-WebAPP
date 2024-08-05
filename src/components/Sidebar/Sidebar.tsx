@@ -8,12 +8,49 @@ import DashBoardGray from '@/static/dashboard_gray.png';
 import Performance from '@/static/performance.png';
 import PerformanceGray from '@/static/performance_gray.png';
 import SidebarRoutes from './SidebarRoutes';
+import { Sheet, SheetContent, SheetHeader, SheetTrigger } from '../shared/ui/sheet';
+import { Button } from '../shared/ui/button';
+import Link from 'next/link';
+import { AlignJustify } from 'lucide-react';
+import { IconUserFilled } from '@tabler/icons-react';
+
 
 export default function Sidebar() {
   return (
+    <nav>
+    <div className='sm:hidden'>
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button className='bg-[#2D6432]'><AlignJustify /></Button>
+        </SheetTrigger>
+        <SheetContent side={"left"}>
+          <SheetHeader>
+            <div className="mt-4 text-2xl text-white font-semibold">
+              ConnectFarm
+            </div>
+          </SheetHeader>
+          <div className="grid gap-4 py-4 justify-center mt-4">
+            <Link href="/" className="text-white hover:text-gray-300 mt-2 text-center">Página inicial</Link>
+            <Link href="/painel" className="text-white hover:text-gray-300 mt-2 text-center">Assinar Painel</Link>
+            <Link href="/register" className="text-white hover:text-gray-300 mt-2 text-center">Registrar</Link>
+            <Link href="/login" className="text-white hover:text-gray-300 mt-2 text-center">Entrar</Link>
+            <Link href="#" className="text-white hover:text-gray-300 text-center">
+              <div className={`
+                flex items-center py-2 pl-3 pr-4
+                bg-[#404440] rounded-full
+              `}>
+                <IconUserFilled className="mr-2" />
+                <span>Contato</span>
+              </div>
+            </Link>
+          </div>
+        </SheetContent>
+      </Sheet>
+      </div>
+
     <div className={`
-        flex flex-col w-[15%] gap-2
-        min-w-[200px] h-screen bg-[#303030]
+        hidden sm:flex flex-col w-[15%] gap-2
+        min-w-[200px] h-screen bg-[#303030] fixed
     `}>
       <div className={`
         flex items-center justify-start
@@ -35,5 +72,6 @@ export default function Sidebar() {
         
       </div>
     </div>
+    </nav>
   );
 }

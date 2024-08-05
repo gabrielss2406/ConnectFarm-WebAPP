@@ -4,7 +4,7 @@ import Navbar from '@/components/StartPage/Navbar';
 import { IconArrowNarrowDown } from '@tabler/icons-react';
 
 export default function About() {
-  const servicesRef = useRef(null);
+  const servicesRef = useRef<HTMLDivElement>(null);
 
   const scrollToServices = () => {
     if (servicesRef.current) {
