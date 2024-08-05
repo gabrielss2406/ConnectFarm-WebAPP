@@ -1,8 +1,17 @@
+import { useRef } from 'react';
 import CardGroup from '@/components/StartPage/CardGroup';
 import Navbar from '@/components/StartPage/Navbar';
 import { IconArrowNarrowDown } from '@tabler/icons-react';
 
 export default function About() {
+  const servicesRef = useRef(null);
+
+  const scrollToServices = () => {
+    if (servicesRef.current) {
+      servicesRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div>
       <Navbar />
@@ -23,12 +32,15 @@ export default function About() {
             Painel de análises
           </div>
           <div className="mt-4">
-            <button className={`
-              flex pl-5 pr-2 py-2
-              bg-[#A2CE9B] rounded-full
-              hover:bg-[#61d250]
-              group
-            `}>
+            <button 
+              className={`
+                flex pl-5 pr-2 py-2
+                bg-[#A2CE9B] rounded-full
+                hover:bg-[#61d250]
+                group
+              `}
+              onClick={scrollToServices}
+            >
               <div className="flex items-center gap-2">
                 <h1 className="text-black font-semibold text-sm">
                   Começar
@@ -40,7 +52,7 @@ export default function About() {
             </button>
           </div>
         </div>
-        <div>
+        <div ref={servicesRef}>
           <div className='flex flex-col gap-20 justify-center items-center'>
             <div className='text-5xl font-semibold'>
               Nossos serviços

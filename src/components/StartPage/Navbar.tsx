@@ -1,8 +1,6 @@
 import React from 'react';
-import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '../shared/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTrigger } from '../shared/ui/sheet';
 import { Button } from '../shared/ui/button';
-import { Label } from '../shared/ui/label';
-import { Input } from '../shared/ui/input';
 import Link from 'next/link';
 import { IconUserFilled } from '@tabler/icons-react';
 import { AlignJustify } from 'lucide-react';
