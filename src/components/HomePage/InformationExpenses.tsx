@@ -13,7 +13,7 @@ interface InformationExpensesProps {
 
 function InformationExpenses(props: InformationExpensesProps) {
   return (
-    <Card className={`h-auto w-full flex-1
+    <Card className={`h-auto w-full flex-1 min-w-32
       ${props.invertColor ? 'bg-white text-[#303030]' : 'bg-[#303030] text-white'}`}>
       <CardHeader>
         <CardTitle>

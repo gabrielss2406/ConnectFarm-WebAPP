@@ -37,7 +37,7 @@ export default function Home() {
         <h1 className="text-black text-[14pt] font-bold">Data Analysis</h1>
         <SelectFarm farms={farms} activeFarm={activeFarm} setActiveFarm={setActiveFarm} />
       </header>
-      <main className="flex-grow flex flex-col w-full h-auto flex-wrap justify-around gap-4 pt-4 flex-row p-10">
+      <main className="flex-grow flex w-full h-auto flex-wrap justify-around gap-4 pt-4 flex-row p-10">
         <InformationExpenses expenseType="Lucro" amount={45.67} invertColor={false} />
         <InformationExpenses expenseType="Lucro" amount={45.67} invertColor={true} />
         <InformationExpenses expenseType="Lucro" amount={45.67} invertColor={false} />
