@@ -3,15 +3,38 @@ import { SelectFarm } from "@/components/PainelPage/SelectFarm";
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { ApexOptions } from 'apexcharts';
+import { FarmService } from '@/services/farm'
+import { LoadingSpinner } from "@/components/shared/components/loading";
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 export default function Home() {
-  const farms = ["Farm 1", "Farm 2", "Farm 3"];
-  const [activeFarm, setActiveFarm] = useState(farms[0]);
+  const [loading, setLoading] = useState(false);
+  const [farms, setFarms] = useState<string[]>([]);
+  const [activeFarm, setActiveFarm] = useState("");
 
   const [chartOptions, setChartOptions] = useState<ApexOptions>({});
   const [chartSeries, setChartSeries] = useState<{ name: string; data: number[] }[]>([]);
+
+  useEffect(() => {
+    const fetchFarms = async () => {
+      try {
+        setLoading(true);
+        const farmService = new FarmService();
+        const farmsList = await farmService.getFarmsFromUser();
+        const farmNames = farmsList.map(farm => farm.name);
+        setFarms(farmNames);
+        if (farmNames.length > 0) {
+          setActiveFarm(farmNames[0]);
+        }
+      } catch (error) {
+        console.error('Erro ao carregar lista de fazendas:', error);
+      }
+      setLoading(false)
+    };
+
+    fetchFarms();
+  }, []);
 
   useEffect(() => {
     setChartOptions({
@@ -33,6 +56,10 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen bg-[#F1F1F1] sm:ml-[15%]">
+      {loading ? (
+				<LoadingSpinner label='Carregando dados da fazenda...' />
+			) : (
+        <div>
       <header className="p-5 bg-white flex w-full items-center justify-between">
         <h1 className="text-black text-[14pt] font-bold">Data Analysis</h1>
         <SelectFarm farms={farms} activeFarm={activeFarm} setActiveFarm={setActiveFarm} />
@@ -63,6 +90,8 @@ export default function Home() {
           width="380"
         />
       </footer>
+      </div>
+      )}
     </div>
   );
 }
