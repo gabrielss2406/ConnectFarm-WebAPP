@@ -1,11 +1,10 @@
-import Card from "./Card";
+import { Card } from "./Card";
 
-import IconFinance from '@/static/cardsIcon/icon_finance.png';
-import IconOrganize from '@/static/cardsIcon/icon_organize.png';
-import IconAnalysis from '@/static/cardsIcon/icon_analysis.png';
-import IconPredictions from '@/static/cardsIcon/icon_predictions.png';
-import IconCentralize from '@/static/cardsIcon/icon_centralize.png';
-import IconCows from '@/static/cardsIcon/icon_cows.png';
+import { FaCow, FaBrain } from "react-icons/fa6";
+import { IoAnalytics } from "react-icons/io5";
+import { RiOrganizationChart } from "react-icons/ri";
+import { FaMoneyBillTransfer } from "react-icons/fa6";
+import { MdOutlinePhonelink } from "react-icons/md";
 
 export default function CardGroup() {
     return (
@@ -20,42 +19,48 @@ export default function CardGroup() {
                 text="Um local para gerenciar todos
                     seus gastos e ganhos. Registrar 
                     compras e vendas."
-                icon={IconFinance.src}
+                icon={FaMoneyBillTransfer}
+                bgColor="#F59E0B"
             />
             <Card 
                 title="Gestão pecuária"
                 text="Um local para registrar
                     com toda segurança e flexibilidade
                     as informações do seu gado."
-                icon={IconCows.src}
+                icon={FaCow}
+                bgColor="#F97316"
             />
             <Card 
                 title="Organização"
                 text="Um local para guardar suas 
                     anotações, datas importantes
                     melhorias."
-                icon={IconOrganize.src}
+                icon={RiOrganizationChart}
+                bgColor="#60A5FA"
             />
             <Card 
                 title="Análises"
                 text="Oferecemos um painel com 
                     análises financeiras e pecuária. 
                     Buscando melhorias na produção."
-                icon={IconAnalysis.src}
+                icon={IoAnalytics}
+                bgColor="#7C3AED"
             />
             <Card 
                 title="Previsões"
                 text="Oferecemos um painel com 
                     previsões de produção com base 
                     nas suas informações."
-                icon={IconPredictions.src}
+                icon={FaBrain}
+                bgColor="#A3E635"
             />
             <Card 
                 title="Centralização"
                 text="Oferecemos todos os serviços
                     em um unico lugar, buscando 
                     centralizartodos os serviços."
-                icon={IconCentralize.src}
+                icon={MdOutlinePhonelink}
+                bgColor="#16A34A"
             />
         </div>
     )

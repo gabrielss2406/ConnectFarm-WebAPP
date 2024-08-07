@@ -1,12 +1,14 @@
-import Image from 'next/image';
+import React from 'react';
+import { IconType } from 'react-icons';
 
 interface CardProps {
-    title: string
-    text: string
-    icon: string
+    title: string;
+    text: string;
+    icon: IconType;
+    bgColor: string;
 }
 
-export default function Card(props: CardProps) {
+export const Card: React.FC<CardProps> = ({ icon: Icon, text, title, bgColor }) => {
     return (
         <div className={`
             flex flex-col gap-2 w-full p-8
@@ -15,17 +17,16 @@ export default function Card(props: CardProps) {
             border border-transparent rounded-3xl
             hover:border-zinc-400 hover:bg-[#A2CE9B] hover:bg-opacity-15
         `}>
-            <Image
-                className="w-10 h-10"
-                src={props.icon}
-                alt={"finance"+"-icon"}
-                width={10}
-                height={10}
-            />
-            <div className="text-xl font-bold">{props.title}</div>
+            <div
+                className="flex items-center justify-center w-12 h-12 rounded-lg p-1"
+                style={{ backgroundColor: bgColor }}
+            >
+                <Icon size={36} color="white" />
+            </div>
+            <div className="text-xl font-bold">{title}</div>
             <div className="text-base">
-                {props.text}
+                {text}
             </div>
         </div>
-    )
+    );
 }
