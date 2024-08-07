@@ -1,17 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
 import Logo from '@/static/logo.png';
-import DataAnalisys from '@/static/dataAnalisys.png';
-import DataAnalisysGray from '@/static/dataAnalisys_gray.png';
-import DashBoard from '@/static/dashboard.png';
-import DashBoardGray from '@/static/dashboard_gray.png';
-import Performance from '@/static/performance.png';
-import PerformanceGray from '@/static/performance_gray.png';
-import SidebarRoutes from './SidebarRoutes';
+import { SidebarRoutes } from './SidebarRoutes';
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from '../shared/ui/sheet';
 import { Button } from '../shared/ui/button';
 import Link from 'next/link';
-import { AlignJustify } from 'lucide-react';
+import { AlignJustify, FilePieChart } from 'lucide-react';
+import { LogoutButton } from '../PainelPage/LogoutButton';
 
 export default function Sidebar() {
   return (
@@ -48,9 +43,8 @@ export default function Sidebar() {
             <h2 className='text-[#8E8D8D] text-[8pt] font-bold'>OPTIONS</h2>
           </div>
           <div className="flex flex-col items-center justify-between w-full gap-3">
-            <SidebarRoutes mainIcon={DataAnalisys} altIcon={DataAnalisysGray} pageName="DataAnalisys" routeName="/painel" />
-            <SidebarRoutes mainIcon={Performance} altIcon={PerformanceGray} pageName="Performance" routeName="/" />
-            <SidebarRoutes mainIcon={DashBoard} altIcon={DashBoardGray} pageName="DashBoard" routeName="/" />
+            <SidebarRoutes icon={FilePieChart} pageName="DataAnalisys" routeName="/painel" />
+            <LogoutButton />
           </div>
         </div>
       </div>

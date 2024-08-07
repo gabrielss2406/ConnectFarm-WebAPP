@@ -22,7 +22,7 @@ export default function LoginForm() {
     const userService = new UserService();
     setLoading(true);
     try {
-      const response = await userService.login(values.email, values.password);
+      await userService.login(values.email, values.password);
       toast.success("Usuário logado com sucesso!")
     } catch (error) {
       toast.error("Erro ao fazer login!")

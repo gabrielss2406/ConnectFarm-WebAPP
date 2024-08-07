@@ -24,7 +24,6 @@ export class UserService {
 
       return response.data;
     } catch (error) {
-      console.error('Erro ao fazer login:', error);
       throw new Error('Login failed');
     }
   }
@@ -38,8 +37,16 @@ export class UserService {
 
       return response.data;
     } catch (error) {
-      console.error('Erro ao fazer cadastro:', error);
       throw new Error('Login failed');
+    }
+  }
+
+
+  public async logout() {
+    try {
+      Cookies.remove('_cnctfarm_token');
+    } catch (error) {
+      throw new Error('Logout failed');
     }
   }
 }
