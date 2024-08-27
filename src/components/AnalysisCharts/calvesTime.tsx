@@ -31,7 +31,7 @@ export const ChartCalvesTime: React.FC<ChartCalvesTimeProps> = ({ farm_id }) => 
         };
 
         fetchFarms();
-    }, []);
+    }, [farm_id]);
 
     const [chartOptions, setChartOptions] = useState<ApexOptions>({
         chart: {

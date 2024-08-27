@@ -30,7 +30,7 @@ export const ChartVaccineCoverage: React.FC<ChartVaccineCoverageProps> = ({ farm
         };
 
         fetchFarms();
-    }, []);
+    }, [farm_id]);
 
     const [chartOptions, setChartOptions] = useState<ApexOptions>({
         xaxis: {

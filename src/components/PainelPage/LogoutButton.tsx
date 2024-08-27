@@ -20,7 +20,7 @@ export const LogoutButton: React.FC<any> = ({ routeName }) => {
     try {
       await userService.logout();
       toast.success("Usuário deslogado com sucesso!");
-      router.push("/");
+      router.push("../");
     } catch (error) {
       toast.error("Erro ao fazer logout!");
     }

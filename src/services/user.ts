@@ -1,16 +1,14 @@
 import api from './api';
 import Cookies from 'js-cookie';
-import dotenv from 'dotenv';
 import { RegisterType } from '@/schemas/User';
 
-dotenv.config();
 export class UserService {
   public async login(username: string, password: string) {
     try {
       const formData = new FormData();
       formData.append('username', username);
       formData.append('password', password);
-      
+
       const response = await api.post('/user/login', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -28,11 +26,11 @@ export class UserService {
     }
   }
 
-  
-  public async register(values : RegisterType) {
+
+  public async register(values: RegisterType) {
     try {
       const { confirmPassword, ...data } = values;
-      
+
       const response = await api.post('/user/register', data);
 
       return response.data;
@@ -48,5 +46,16 @@ export class UserService {
     } catch (error) {
       throw new Error('Logout failed');
     }
+  }
+
+  public async authVerify(token: any) {
+    console.log(api)
+    // const response = await api.get('/token', {
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // });
+
+    return "";
   }
 }

@@ -32,7 +32,7 @@ export const ChartCalvesRatio: React.FC<ChartCalvesRatioProps> = ({ farm_id }) =
         };
 
         fetchFarms();
-    }, []);
+    }, [farm_id]);
 
     console.log(farm_id)
     const [chartOptions, setChartOptions] = useState<ApexOptions>({
@@ -53,7 +53,7 @@ export const ChartCalvesRatio: React.FC<ChartCalvesRatioProps> = ({ farm_id }) =
 
     useEffect(() => {
         if (data) {
-            const totalCalves = data.total_cows;
+            const totalCalves = data.total_calves;
             const weanedCalves = data.weaned_calves;
             const notWeanedCalves = totalCalves - weanedCalves;
 
