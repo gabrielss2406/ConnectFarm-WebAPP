@@ -7,6 +7,8 @@ import { Button } from '../shared/ui/button';
 import Link from 'next/link';
 import { AlignJustify, FilePieChart } from 'lucide-react';
 import { LogoutButton } from '../PainelPage/LogoutButton';
+import { PiCow } from "react-icons/pi";
+import { TbVaccine } from "react-icons/tb";
 
 export default function Sidebar() {
   return (
@@ -25,8 +27,8 @@ export default function Sidebar() {
             </SheetHeader>
             <div className="grid gap-4 py-4 justify-center mt-4">
               <Link href="/painel" className="text-white hover:text-gray-300 mt-2 text-center">DataAnalisys</Link>
-              <Link href="/painel" className="text-white hover:text-gray-300 mt-2 text-center">Performance</Link>
-              <Link href="/painel" className="text-white hover:text-gray-300 mt-2 text-center">Dashboard</Link>
+              <Link href="/painel/calves" className="text-white hover:text-gray-300 mt-2 text-center">Bezerros</Link>
+              <Link href="/painel/vaccines" className="text-white hover:text-gray-300 mt-2 text-center">Vacinas</Link>
             </div>
           </SheetContent>
         </Sheet>
@@ -43,7 +45,9 @@ export default function Sidebar() {
             <h2 className='text-[#8E8D8D] text-[8pt] font-bold'>OPTIONS</h2>
           </div>
           <div className="flex flex-col items-center justify-between w-full gap-3">
-            <SidebarRoutes icon={FilePieChart} pageName="DataAnalisys" routeName="/painel" />
+            <SidebarRoutes icon={FilePieChart} pageName="DataAnalysis" routeName="/painel" />
+            <SidebarRoutes icon={PiCow} pageName="Bezerros" routeName="/painel/calves" />
+            <SidebarRoutes icon={TbVaccine} pageName="Vacinas" routeName="/painel/vaccines" />
             <LogoutButton />
           </div>
         </div>

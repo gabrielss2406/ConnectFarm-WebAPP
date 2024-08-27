@@ -9,9 +9,11 @@ import { useState } from "react";
 import { ButtonCustom } from "@/components/shared/ui/button-custom";
 import { toast } from "sonner";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const form = useForm<LoginType>({
     mode: "all",
@@ -24,6 +26,7 @@ export default function LoginForm() {
     try {
       await userService.login(values.email, values.password);
       toast.success("Usuário logado com sucesso!")
+      router.push("/painel");
     } catch (error) {
       toast.error("Erro ao fazer login!")
     } finally {

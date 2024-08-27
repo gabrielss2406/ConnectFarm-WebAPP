@@ -20,7 +20,7 @@ export const SidebarRoutes: React.FC<SidebarRoutesProps> = ({ icon: RouteIcon, p
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <RouteIcon color={isHovered ? "#3E623A" : "#8E8D8D"} />
+      <RouteIcon color={isHovered ? "#3E623A" : "#8E8D8D"} size={24} />
       {pageName}
     </Link>
   );
