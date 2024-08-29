@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { FarmService } from '@/services/farm'
 import { LoadingSpinner } from "@/components/shared/components/loading";
 import { ChartWeightVariation } from "@/components/AnalysisCharts/weightVariation";
+import { ChartWeightVariationMonth } from "@/components/AnalysisCharts/weightVariationMonth";
 
 
 export default function Home() {
@@ -48,8 +49,9 @@ export default function Home() {
                         <h1 className="text-black text-[14pt] font-bold">Análise das pesagens do gado</h1>
                         <SelectFarm farms={farms} activeFarmId={activeFarm} setActiveFarmId={setActiveFarm} />
                     </header>
-                    <footer className="flex flex-col items-center gap-4 p-10">
+                    <footer className="flex flex-col sm:items-center items-start gap-4 p-10 overflow-x-auto">
                         <ChartWeightVariation farm_id={activeFarmId || ""} />
+                        <ChartWeightVariationMonth farm_id={activeFarmId || ""} />
                     </footer>
                 </div>
             )}

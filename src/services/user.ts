@@ -47,15 +47,4 @@ export class UserService {
       throw new Error('Logout failed');
     }
   }
-
-  public async authVerify(token: any) {
-    console.log(api)
-    // const response = await api.get('/token', {
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // });
-
-    return "";
-  }
 }

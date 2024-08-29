@@ -43,6 +43,13 @@ export const WeightVariationSchema = z.array(
   })
 )
 
+export const WeightVariationMonthSchema = z.array(
+  z.object({
+    average_weight: z.number(),
+    month: z.number(),
+  })
+)
+
 export type CalvesRatioType = z.infer<typeof CalvesRatioSchema>
 export type CalvesTimeType = z.infer<typeof CalvesTimeSchema>
 
@@ -51,3 +58,4 @@ export type VaccinesCoverageType = z.infer<typeof VaccinesCoverageSchema>
 export type HealthHistoryType = z.infer<typeof HealthHistorySchema>
 
 export type WeightVariationType = z.infer<typeof WeightVariationSchema>
+export type WeightVariationMonthType = z.infer<typeof WeightVariationMonthSchema>

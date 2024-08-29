@@ -93,7 +93,7 @@ export const ChartCalvesTime: React.FC<ChartCalvesTimeProps> = ({ farm_id }) => 
                     options={chartOptions}
                     series={chartSeries}
                     type="bar"
-                    width="380"
+                    width="100%"
                 />
             </CardContent>
         </Card>

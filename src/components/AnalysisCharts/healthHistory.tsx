@@ -108,7 +108,7 @@ export const ChartHealthHistory: React.FC<ChartHealthHistoryProps> = ({ farm_id 
     }, [data]);
 
     return (
-        <div className='flex flex-wrap gap-4'>
+        <div className='flex flex-row items-start gap-4'>
             <Card>
                 <CardHeader>
                     <CardTitle>Total de Doenças</CardTitle>
@@ -119,7 +119,7 @@ export const ChartHealthHistory: React.FC<ChartHealthHistoryProps> = ({ farm_id 
                         options={diseaseChartOptions}
                         series={diseaseChartSeries}
                         type="bar"
-                        width="150%"
+                        width="300"
                     />
                 </CardContent>
             </Card>
@@ -133,7 +133,7 @@ export const ChartHealthHistory: React.FC<ChartHealthHistoryProps> = ({ farm_id 
                         options={recoveryChartOptions}
                         series={recoveryChartSeries}
                         type="bar"
-                        width="150%"
+                        width="300"
                     />
                 </CardContent>
             </Card>

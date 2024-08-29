@@ -1,7 +1,7 @@
 import api from './api';
 import Cookies from 'js-cookie';
 import dotenv from 'dotenv';
-import { WeightVariationType } from '@/schemas/DataAnalysis';
+import { WeightVariationMonthType, WeightVariationType } from '@/schemas/DataAnalysis';
 
 dotenv.config();
 
@@ -23,7 +23,17 @@ export class DataWeightAnalysisService {
 
             return response.data;
         } catch (error) {
-            throw new Error('Error on analysis of health history');
+            throw new Error('Error on analysis of weight variation');
+        }
+    }
+
+    public async analysisWeightVariationMonth(farm_id: string): Promise<WeightVariationMonthType> {
+        try {
+            const response = await api.get(`/data/${farm_id}/weight/variation/month`);
+
+            return response.data;
+        } catch (error) {
+            throw new Error('Error on analysis of weight variation per month');
         }
     }
 }

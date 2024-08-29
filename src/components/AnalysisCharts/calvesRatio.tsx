@@ -76,7 +76,7 @@ export const ChartCalvesRatio: React.FC<ChartCalvesRatioProps> = ({ farm_id }) =
                             options={chartOptions}
                             series={chartSeries.length ? chartSeries : [0, 0]}
                             type="donut"
-                            width="380"
+                            width="100%"
                         />
                     </CardContent>
                 </Card>
