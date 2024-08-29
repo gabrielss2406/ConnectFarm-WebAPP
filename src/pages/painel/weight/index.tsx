@@ -1,16 +1,26 @@
 import { SelectFarm } from "@/components/PainelPage/SelectFarm";
 import { useState, useEffect } from "react";
-import { FarmService } from '@/services/farm'
+import { FarmService } from '@/services/farm';
 import { LoadingSpinner } from "@/components/shared/components/loading";
 import { ChartWeightVariation } from "@/components/AnalysisCharts/weightVariation";
 import { ChartWeightVariationMonth } from "@/components/AnalysisCharts/weightVariationMonth";
+import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 
+// Define the type for a chart item
+interface ChartItem {
+    id: string;
+    component: JSX.Element;
+}
 
 export default function Home() {
-    const [activeFarm, setActiveFarm] = useState("");
+    const [activeFarm, setActiveFarm] = useState<string>("");
     const [farms, setFarms] = useState<{ id: string; name: string }[]>([]);
     const [activeFarmId, setActiveFarmId] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
+    const [charts, setCharts] = useState<ChartItem[]>([
+        { id: 'chartWeightVariation', component: <ChartWeightVariation farm_id={activeFarmId || ""} /> },
+        { id: 'chartWeightVariationMonth', component: <ChartWeightVariationMonth farm_id={activeFarmId || ""} /> }
+    ]);
 
     useEffect(() => {
         const fetchFarms = async () => {
@@ -39,6 +49,33 @@ export default function Home() {
         fetchFarms();
     }, []);
 
+    useEffect(() => {
+        if (activeFarmId) {
+            setCharts([
+                { id: 'chartWeightVariation', component: <ChartWeightVariation farm_id={activeFarmId} /> },
+                { id: 'chartWeightVariationMonth', component: <ChartWeightVariationMonth farm_id={activeFarmId} /> }
+            ]);
+        }
+    }, [activeFarmId]);
+
+    const onDragEnd = (result: DropResult) => {
+        const { destination, source } = result;
+
+        if (!destination) {
+            return;
+        }
+
+        if (destination.index === source.index) {
+            return;
+        }
+
+        const reorderedCharts = Array.from(charts);
+        const [movedChart] = reorderedCharts.splice(source.index, 1);
+        reorderedCharts.splice(destination.index, 0, movedChart);
+
+        setCharts(reorderedCharts);
+    };
+
     return (
         <div className="flex flex-col min-h-screen bg-[#F1F1F1] sm:ml-[15%]">
             {loading ? (
@@ -49,10 +86,32 @@ export default function Home() {
                         <h1 className="text-black text-[14pt] font-bold">Análise das pesagens do gado</h1>
                         <SelectFarm farms={farms} activeFarmId={activeFarm} setActiveFarmId={setActiveFarm} />
                     </header>
-                    <footer className="flex flex-col sm:items-center items-start gap-4 p-10 overflow-x-auto">
-                        <ChartWeightVariation farm_id={activeFarmId || ""} />
-                        <ChartWeightVariationMonth farm_id={activeFarmId || ""} />
-                    </footer>
+                    <DragDropContext onDragEnd={onDragEnd}>
+                        <Droppable droppableId="droppable">
+                            {(provided) => (
+                                <footer
+                                    className="flex flex-col sm:items-center items-start gap-4 p-10 overflow-x-auto"
+                                    ref={provided.innerRef}
+                                    {...provided.droppableProps}
+                                >
+                                    {charts.map((chart, index) => (
+                                        <Draggable key={chart.id} draggableId={chart.id} index={index}>
+                                            {(provided) => (
+                                                <div
+                                                    ref={provided.innerRef}
+                                                    {...provided.draggableProps}
+                                                    {...provided.dragHandleProps}
+                                                >
+                                                    {chart.component}
+                                                </div>
+                                            )}
+                                        </Draggable>
+                                    ))}
+                                    {provided.placeholder}
+                                </footer>
+                            )}
+                        </Droppable>
+                    </DragDropContext>
                 </div>
             )}
         </div>

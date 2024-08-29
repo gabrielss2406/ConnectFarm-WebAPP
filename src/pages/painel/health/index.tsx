@@ -99,7 +99,6 @@ export default function Home() {
                                                     ref={provided.innerRef}
                                                     {...provided.draggableProps}
                                                     {...provided.dragHandleProps}
-                                                    className="w-full sm:w-1/2 lg:w-1/3"
                                                 >
                                                     {chart.component}
                                                 </div>
