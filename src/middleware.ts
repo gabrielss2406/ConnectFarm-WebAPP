@@ -4,8 +4,7 @@ import { UserService } from './services/user';
 export default async function middleware(request: NextRequest) {
     const token = request.cookies.get('_cnctfarm_token');
 
-    const response = await new UserService().authVerify(token);
-    console.log(response);
+    await new UserService().authVerify(token);
 
     if (!token) {
         return NextResponse.redirect(new URL('/', request.url));

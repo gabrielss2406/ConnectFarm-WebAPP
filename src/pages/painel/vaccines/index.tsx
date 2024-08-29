@@ -45,7 +45,7 @@ export default function Home() {
             ) : (
                 <div>
                     <header className="p-5 bg-white flex w-full items-center justify-between">
-                        <h1 className="text-black text-[14pt] font-bold">Data Analysis</h1>
+                        <h1 className="text-black text-[14pt] font-bold">Análises da vacinação do gado</h1>
                         <SelectFarm farms={farms} activeFarmId={activeFarm} setActiveFarmId={setActiveFarm} />
                     </header>
                     <footer className="flex flex-col items-center gap-4 p-10">

@@ -45,7 +45,7 @@ export default function Home() {
       ) : (
         <div>
           <header className="p-5 bg-white flex w-full items-center justify-between">
-            <h1 className="text-black text-[14pt] font-bold">Data Analysis</h1>
+            <h1 className="text-black text-[14pt] font-bold">Painel ConnectFarm</h1>
             <SelectFarm farms={farms} activeFarmId={activeFarm} setActiveFarmId={setActiveFarm} />
           </header>
           <main className="flex-grow flex w-full h-auto flex-wrap justify-around gap-4 pt-4 flex-row p-10">

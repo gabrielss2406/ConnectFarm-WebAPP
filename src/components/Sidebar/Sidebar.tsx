@@ -5,7 +5,7 @@ import { SidebarRoutes } from './SidebarRoutes';
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from '../shared/ui/sheet';
 import { Button } from '../shared/ui/button';
 import Link from 'next/link';
-import { AlignJustify, Cross, FilePieChart } from 'lucide-react';
+import { AlignJustify, Cross, FilePieChart, Scale } from 'lucide-react';
 import { LogoutButton } from '../PainelPage/LogoutButton';
 import { PiCow } from "react-icons/pi";
 import { TbVaccine } from "react-icons/tb";
@@ -30,6 +30,7 @@ export default function Sidebar() {
               <Link href="/painel/calves" className="text-white hover:text-gray-300 mt-2 text-center">Bezerros</Link>
               <Link href="/painel/vaccines" className="text-white hover:text-gray-300 mt-2 text-center">Vacinas</Link>
               <Link href="/painel/health" className="text-white hover:text-gray-300 mt-2 text-center">Saúde</Link>
+              <Link href="/painel/weight" className="text-white hover:text-gray-300 mt-2 text-center">Peso</Link>
             </div>
           </SheetContent>
         </Sheet>
@@ -46,10 +47,11 @@ export default function Sidebar() {
             <h2 className='text-[#8E8D8D] text-[8pt] font-bold'>OPTIONS</h2>
           </div>
           <div className="flex flex-col items-center justify-between w-full gap-3">
-            <SidebarRoutes icon={FilePieChart} pageName="DataAnalysis" routeName="/painel" />
+            <SidebarRoutes icon={FilePieChart} pageName="Tela principal" routeName="/painel" />
             <SidebarRoutes icon={PiCow} pageName="Bezerros" routeName="/painel/calves" />
             <SidebarRoutes icon={TbVaccine} pageName="Vacinas" routeName="/painel/vaccines" />
             <SidebarRoutes icon={Cross} pageName="Saúde" routeName="/painel/health" />
+            <SidebarRoutes icon={Scale} pageName="Peso" routeName="/painel/weight" />
             <LogoutButton />
           </div>
         </div>

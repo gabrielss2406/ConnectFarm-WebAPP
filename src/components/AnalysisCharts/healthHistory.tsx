@@ -119,7 +119,7 @@ export const ChartHealthHistory: React.FC<ChartHealthHistoryProps> = ({ farm_id 
                         options={diseaseChartOptions}
                         series={diseaseChartSeries}
                         type="bar"
-                        width="100%"
+                        width="150%"
                     />
                 </CardContent>
             </Card>
@@ -133,7 +133,7 @@ export const ChartHealthHistory: React.FC<ChartHealthHistoryProps> = ({ farm_id 
                         options={recoveryChartOptions}
                         series={recoveryChartSeries}
                         type="bar"
-                        width="100%"
+                        width="150%"
                     />
                 </CardContent>
             </Card>

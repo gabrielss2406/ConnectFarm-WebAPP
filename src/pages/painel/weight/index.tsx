@@ -2,8 +2,7 @@ import { SelectFarm } from "@/components/PainelPage/SelectFarm";
 import { useState, useEffect } from "react";
 import { FarmService } from '@/services/farm'
 import { LoadingSpinner } from "@/components/shared/components/loading";
-import { ChartCalvesRatio } from "@/components/AnalysisCharts/calvesRatio";
-import { ChartCalvesTime } from "@/components/AnalysisCharts/calvesTime";
+import { ChartWeightVariation } from "@/components/AnalysisCharts/weightVariation";
 
 
 export default function Home() {
@@ -46,16 +45,11 @@ export default function Home() {
             ) : (
                 <div>
                     <header className="p-5 bg-white flex w-full items-center justify-between">
-                        <h1 className="text-black text-[14pt] font-bold">Análises sobre os bezerros</h1>
+                        <h1 className="text-black text-[14pt] font-bold">Análise das pesagens do gado</h1>
                         <SelectFarm farms={farms} activeFarmId={activeFarm} setActiveFarmId={setActiveFarm} />
                     </header>
-                    <footer className="flex flex-wrap gap-4 p-10">
-                        <div className="w-full sm:w-1/2 lg:w-1/3">
-                            <ChartCalvesRatio farm_id={activeFarmId || ""} />
-                        </div>
-                        <div className="w-full sm:w-1/2 lg:w-1/3">
-                            <ChartCalvesTime farm_id={activeFarmId || ""} />
-                        </div>
+                    <footer className="flex flex-col items-center gap-4 p-10">
+                        <ChartWeightVariation farm_id={activeFarmId || ""} />
                     </footer>
                 </div>
             )}
