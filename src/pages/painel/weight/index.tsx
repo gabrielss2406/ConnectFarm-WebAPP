@@ -5,22 +5,20 @@ import { LoadingSpinner } from "@/components/shared/components/loading";
 import { ChartWeightVariation } from "@/components/AnalysisCharts/weightVariation";
 import { ChartWeightVariationMonth } from "@/components/AnalysisCharts/weightVariationMonth";
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
+import Navigation from "@/components/shared/components/navigation";
+import { Link, Element } from 'react-scroll';
 
-// Define the type for a chart item
 interface ChartItem {
     id: string;
     component: JSX.Element;
 }
 
-export default function Home() {
+export default function WeightPage() {
     const [activeFarm, setActiveFarm] = useState<string>("");
     const [farms, setFarms] = useState<{ id: string; name: string }[]>([]);
     const [activeFarmId, setActiveFarmId] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
-    const [charts, setCharts] = useState<ChartItem[]>([
-        { id: 'chartWeightVariation', component: <ChartWeightVariation farm_id={activeFarmId || ""} /> },
-        { id: 'chartWeightVariationMonth', component: <ChartWeightVariationMonth farm_id={activeFarmId || ""} /> }
-    ]);
+    const [charts, setCharts] = useState<ChartItem[]>([]);
 
     useEffect(() => {
         const fetchFarms = async () => {
@@ -51,10 +49,19 @@ export default function Home() {
 
     useEffect(() => {
         if (activeFarmId) {
-            setCharts([
-                { id: 'chartWeightVariation', component: <ChartWeightVariation farm_id={activeFarmId} /> },
-                { id: 'chartWeightVariationMonth', component: <ChartWeightVariationMonth farm_id={activeFarmId} /> }
-            ]);
+            const storedOrder = localStorage.getItem(`charts-order-weight-${activeFarmId}`);
+            const initialCharts = [
+                { id: 'Variação do peso ao longos do tempo', component: <ChartWeightVariation farm_id={activeFarmId} /> },
+                { id: 'Variação do peso por mês do ano', component: <ChartWeightVariationMonth farm_id={activeFarmId} /> }
+            ];
+
+            if (storedOrder) {
+                const parsedOrder = JSON.parse(storedOrder);
+                const orderedCharts = parsedOrder.map((id: string) => initialCharts.find(chart => chart.id === id));
+                setCharts(orderedCharts.filter(Boolean) as ChartItem[]);
+            } else {
+                setCharts(initialCharts);
+            }
         }
     }, [activeFarmId]);
 
@@ -74,6 +81,20 @@ export default function Home() {
         reorderedCharts.splice(destination.index, 0, movedChart);
 
         setCharts(reorderedCharts);
+        if (activeFarmId) {
+            localStorage.setItem(`charts-order-weight-${activeFarmId}`, JSON.stringify(reorderedCharts.map(chart => chart.id)));
+        }
+    };
+
+    // Função para resetar a ordem dos gráficos
+    const resetChartsOrder = () => {
+        if (activeFarmId) {
+            localStorage.removeItem(`charts-order-weight-${activeFarmId}`);
+            setCharts([
+                { id: 'Variação do peso ao longos do tempo', component: <ChartWeightVariation farm_id={activeFarmId} /> },
+                { id: 'Variação do peso por mês do ano', component: <ChartWeightVariationMonth farm_id={activeFarmId} /> }
+            ]);
+        }
     };
 
     return (
@@ -84,8 +105,14 @@ export default function Home() {
                 <div>
                     <header className="p-5 bg-white flex w-full items-center justify-between">
                         <h1 className="text-black text-[14pt] font-bold">Análise das pesagens do gado</h1>
+                        <Navigation charts={charts} />
                         <SelectFarm farms={farms} activeFarmId={activeFarm} setActiveFarmId={setActiveFarm} />
                     </header>
+
+                    <button onClick={resetChartsOrder} className="bg-blue-500 text-white p-2 rounded m-2">
+                        Resetar Ordem dos Gráficos
+                    </button>
+
                     <DragDropContext onDragEnd={onDragEnd}>
                         <Droppable droppableId="droppable">
                             {(provided) => (
@@ -102,7 +129,9 @@ export default function Home() {
                                                     {...provided.draggableProps}
                                                     {...provided.dragHandleProps}
                                                 >
-                                                    {chart.component}
+                                                    <Element name={chart.id} className="element">
+                                                        {chart.component}
+                                                    </Element>
                                                 </div>
                                             )}
                                         </Draggable>

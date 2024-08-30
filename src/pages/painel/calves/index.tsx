@@ -5,21 +5,19 @@ import { LoadingSpinner } from "@/components/shared/components/loading";
 import { ChartCalvesRatio } from "@/components/AnalysisCharts/calvesRatio";
 import { ChartCalvesTime } from "@/components/AnalysisCharts/calvesTime";
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
+import Navigation from "@/components/shared/components/navigation";
 
 interface ChartItem {
     id: string;
     component: JSX.Element;
 }
 
-export default function Home() {
+export default function CalvesPage() {
     const [activeFarm, setActiveFarm] = useState<string>("");
     const [farms, setFarms] = useState<{ id: string; name: string }[]>([]);
     const [activeFarmId, setActiveFarmId] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
-    const [charts, setCharts] = useState<ChartItem[]>([
-        { id: 'chart1', component: <ChartCalvesRatio farm_id={activeFarmId || ""} /> },
-        { id: 'chart2', component: <ChartCalvesTime farm_id={activeFarmId || ""} /> }
-    ]);
+    const [charts, setCharts] = useState<ChartItem[]>([]);
 
     useEffect(() => {
         const fetchFarms = async () => {
@@ -51,25 +49,30 @@ export default function Home() {
 
     useEffect(() => {
         if (activeFarmId) {
-            setCharts([
-                { id: 'chart1', component: <ChartCalvesRatio farm_id={activeFarmId} /> },
-                { id: 'chart2', component: <ChartCalvesTime farm_id={activeFarmId} /> }
-            ]);
+            const storedOrder = localStorage.getItem(`charts-order-calves-${activeFarmId}`);
+            const initialCharts = [
+                { id: 'Razão de desmame', component: <ChartCalvesRatio farm_id={activeFarmId} /> },
+                { id: 'Tempo de desmame', component: <ChartCalvesTime farm_id={activeFarmId} /> }
+            ];
+
+            if (storedOrder) {
+                const parsedOrder = JSON.parse(storedOrder);
+                const orderedCharts = parsedOrder.map((id: string) => initialCharts.find(chart => chart.id === id));
+                setCharts(orderedCharts.filter(Boolean) as ChartItem[]);
+            } else {
+                setCharts(initialCharts);
+            }
         }
     }, [activeFarmId]);
 
     const onDragEnd = (result: DropResult) => {
-        console.log('Drag result:', result);
-
         const { destination, source } = result;
 
         if (!destination) {
-            console.log('No destination');
             return;
         }
 
         if (destination.index === source.index) {
-            console.log('Same index');
             return;
         }
 
@@ -77,9 +80,20 @@ export default function Home() {
         const [movedChart] = reorderedCharts.splice(source.index, 1);
         reorderedCharts.splice(destination.index, 0, movedChart);
 
-        console.log('Reordered charts:', reorderedCharts);
-
         setCharts(reorderedCharts);
+        if (activeFarmId) {
+            localStorage.setItem(`charts-order-calves-${activeFarmId}`, JSON.stringify(reorderedCharts.map(chart => chart.id)));
+        }
+    };
+
+    const resetChartsOrder = () => {
+        if (activeFarmId) {
+            localStorage.removeItem(`charts-order-calves-${activeFarmId}`);
+            setCharts([
+                { id: 'Razão de desmame', component: <ChartCalvesRatio farm_id={activeFarmId} /> },
+                { id: 'Tempo de desmame', component: <ChartCalvesTime farm_id={activeFarmId} /> }
+            ]);
+        }
     };
 
     return (
@@ -90,8 +104,14 @@ export default function Home() {
                 <div>
                     <header className="p-5 bg-white flex w-full items-center justify-between">
                         <h1 className="text-black text-[14pt] font-bold">Análises sobre os bezerros</h1>
+                        <Navigation charts={charts} />
                         <SelectFarm farms={farms} activeFarmId={activeFarm} setActiveFarmId={setActiveFarm} />
                     </header>
+
+                    <button onClick={resetChartsOrder} className="bg-blue-500 text-white p-2 rounded m-4">
+                        Resetar Ordem dos Gráficos
+                    </button>
+
                     <DragDropContext onDragEnd={onDragEnd}>
                         <Droppable droppableId="droppable">
                             {(provided) => (
