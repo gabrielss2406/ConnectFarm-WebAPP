@@ -2,8 +2,8 @@ import { SelectFarm } from "@/components/PainelPage/SelectFarm";
 import { useState, useEffect } from "react";
 import { FarmService } from '@/services/farm';
 import { LoadingSpinner } from "@/components/shared/components/loading";
-import { ChartCalvesRatio } from "@/components/AnalysisCharts/calvesRatio";
-import { ChartCalvesTime } from "@/components/AnalysisCharts/calvesTime";
+import { ChartCalvesRatio } from "@/components/Analysis/calvesRatio";
+import { ChartCalvesTime } from "@/components/Analysis/calvesTime";
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 import Navigation from "@/components/shared/components/navigation";
 

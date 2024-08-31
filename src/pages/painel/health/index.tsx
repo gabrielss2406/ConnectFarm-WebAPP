@@ -2,7 +2,7 @@ import { SelectFarm } from "@/components/PainelPage/SelectFarm";
 import { useState, useEffect } from "react";
 import { FarmService } from '@/services/farm';
 import { LoadingSpinner } from "@/components/shared/components/loading";
-import { ChartHealthHistory } from "@/components/AnalysisCharts/healthHistory";
+import { ChartHealthHistory } from "@/components/Analysis/healthHistory";
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 import Navigation from "@/components/shared/components/navigation";
 
