@@ -3,6 +3,8 @@ import { SelectFarm } from "@/components/PainelPage/SelectFarm";
 import { useState, useEffect } from "react";
 import { FarmService } from '@/services/farm'
 import { LoadingSpinner } from "@/components/shared/components/loading";
+import FinancialAnalysisGrid from "@/components/Analysis/financialsDataGrid";
+import FinancialCurrent from "@/components/Analysis/financialsCards";
 
 
 export default function Home() {
@@ -49,10 +51,8 @@ export default function Home() {
             <SelectFarm farms={farms} activeFarmId={activeFarm} setActiveFarmId={setActiveFarm} />
           </header>
           <main className="flex-grow flex w-full h-auto flex-wrap justify-around gap-4 pt-4 flex-row p-10">
-            <InformationExpenses expenseType="Lucro" amount={45.67} invertColor={false} />
-            <InformationExpenses expenseType="Lucro" amount={45.67} invertColor={true} />
-            <InformationExpenses expenseType="Lucro" amount={45.67} invertColor={false} />
-            <InformationExpenses expenseType="Lucro" amount={45.67} invertColor={true} />
+            <FinancialCurrent farm_id={activeFarmId} />
+            <FinancialAnalysisGrid farm_id={activeFarmId} />
           </main>
         </div>
       )}

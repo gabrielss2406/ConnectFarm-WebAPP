@@ -117,7 +117,7 @@ export default function WeightPage() {
                         <Droppable droppableId="droppable">
                             {(provided) => (
                                 <footer
-                                    className="flex flex-col sm:items-center items-start gap-4 p-10 overflow-x-auto"
+                                    className="flex flex-col sm:items-center items-start gap-4 p-10 pt-2 overflow-x-auto"
                                     ref={provided.innerRef}
                                     {...provided.droppableProps}
                                 >

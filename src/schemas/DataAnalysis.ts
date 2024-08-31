@@ -50,6 +50,35 @@ export const WeightVariationMonthSchema = z.array(
   })
 )
 
+export const FinancialByCowSchema = z.array(
+  z.object({
+    id: z.number(),
+    total_spent: z.number(),
+    total_received: z.number(),
+    profit: z.number(),
+    percentage_spent_by_category: z.array(
+      z.object({ category: z.string(), percentual: z.number() })
+    ),
+    percentage_gains_by_category: z.array(
+      z.object({ category: z.string(), percentual: z.number() })
+    ),
+  })
+)
+
+export const FinancialCurrentSchema = z.object({
+  month: z.string(),
+  year: z.number(),
+  monthly: z.object({
+    total_spent: z.number(),
+    total_received: z.number()
+  }),
+  yearly: z.object({
+    total_spent: z.number(),
+    total_received: z.number()
+  })
+})
+
+
 export type CalvesRatioType = z.infer<typeof CalvesRatioSchema>
 export type CalvesTimeType = z.infer<typeof CalvesTimeSchema>
 
@@ -59,3 +88,6 @@ export type HealthHistoryType = z.infer<typeof HealthHistorySchema>
 
 export type WeightVariationType = z.infer<typeof WeightVariationSchema>
 export type WeightVariationMonthType = z.infer<typeof WeightVariationMonthSchema>
+
+export type FinancialByCowType = z.infer<typeof FinancialByCowSchema>
+export type FinancialCurrentType = z.infer<typeof FinancialCurrentSchema>

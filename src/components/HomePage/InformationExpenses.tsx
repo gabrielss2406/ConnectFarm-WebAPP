@@ -6,9 +6,9 @@ import ListGray from '@/static/list_gray.png';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../shared/ui/card';
 
 interface InformationExpensesProps {
-    amount: number;
-    invertColor: boolean;
-    expenseType: string;
+  amount: number;
+  invertColor: boolean;
+  expenseType: string;
 }
 
 function InformationExpenses(props: InformationExpensesProps) {
@@ -33,7 +33,7 @@ function InformationExpenses(props: InformationExpensesProps) {
         <CardDescription>{props.expenseType}</CardDescription>
       </CardHeader>
       <CardContent>
-        <p>R$ {props.amount}</p>
+        <p>R$ {props.amount.toFixed(2)}</p>
       </CardContent>
     </Card>
   );
