@@ -108,7 +108,7 @@ export default function CalvesPage() {
                         <SelectFarm farms={farms} activeFarmId={activeFarm} setActiveFarmId={setActiveFarm} />
                     </header>
 
-                    <button onClick={resetChartsOrder} className="bg-blue-500 text-white p-2 rounded m-4">
+                    <button onClick={resetChartsOrder} className="bg-blue-500 text-white p-2 rounded m-2">
                         Resetar Ordem dos Gráficos
                     </button>
 

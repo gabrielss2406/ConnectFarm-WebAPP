@@ -6,7 +6,7 @@ import { ChartWeightVariation } from "@/components/Analysis/weightVariation";
 import { ChartWeightVariationMonth } from "@/components/Analysis/weightVariationMonth";
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 import Navigation from "@/components/shared/components/navigation";
-import { Link, Element } from 'react-scroll';
+import { Element } from 'react-scroll';
 
 interface ChartItem {
     id: string;

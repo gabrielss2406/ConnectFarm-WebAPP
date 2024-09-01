@@ -3,6 +3,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { FinancialCurrentType } from '@/schemas/DataAnalysis';
 import { DataFinancialAnalysisService } from '@/services/financialAnalysis';
 import InformationExpenses from '../HomePage/InformationExpenses';
+import { LoadingSpinner } from '../shared/components/loading';
 
 interface FinancialCurrentProps {
     farm_id: string
@@ -32,14 +33,14 @@ const FinancialCurrent: React.FC<FinancialCurrentProps> = ({ farm_id }) => {
     return (
         <>
             {loading ? (
-                <p>Carregando...</p>
+                <LoadingSpinner label='Carregando cards...' />
             ) : (
-                <>
+                <div className="flex-grow flex w-full h-auto flex-wrap justify-around gap-4 pt-4 flex-row p-10">
                     <InformationExpenses expenseType={`Gastos de ${data.month}`} amount={data.monthly.total_spent} invertColor={false} change={data.monthly.spent_change} />
                     <InformationExpenses expenseType={`Ganhos de ${data.month}`} amount={data.monthly.total_received} invertColor={true} change={data.monthly.received_change} />
                     <InformationExpenses expenseType={`Gastos de ${data.year}`} amount={data.yearly.total_spent} invertColor={false} />
                     <InformationExpenses expenseType={`Ganhos de ${data.year}`} amount={data.yearly.total_received} invertColor={true} />
-                </>
+                </div>
             )}
         </>
     );

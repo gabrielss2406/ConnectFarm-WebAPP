@@ -43,14 +43,15 @@ const FinancialAnalysisGrid: React.FC<FinancialGridProps> = ({ farm_id }) => {
 
     // Definindo as colunas para o DataGrid
     const columns: GridColDef[] = [
-        { field: 'id', headerName: 'Número da matriz', width: 100 },
-        { field: 'total_spent', headerName: 'Total gasto', width: 150, type: 'number', valueFormatter: (params: GridCellParams) => formatCurrency(Number(params)) },
-        { field: 'total_received', headerName: 'Total gerado', width: 150, type: 'number', valueFormatter: (params: GridCellParams) => formatCurrency(Number(params)) },
-        { field: 'profit', headerName: 'Lucro', width: 150, type: 'number', valueFormatter: (params: GridCellParams) => formatCurrency(Number(params)) },
+        { field: 'id', headerName: 'Número da matriz', width: 100, align: 'center', headerAlign: 'center' },
+        { field: 'total_spent', headerName: 'Total gasto', width: 120, align: 'center', headerAlign: 'center', type: 'number', valueFormatter: (params: GridCellParams) => formatCurrency(Number(params)) },
+        { field: 'total_received', headerName: 'Total gerado', width: 120, align: 'center', headerAlign: 'center', type: 'number', valueFormatter: (params: GridCellParams) => formatCurrency(Number(params)) },
+        { field: 'profit', headerName: 'Lucro', width: 120, align: 'center', headerAlign: 'center', type: 'number', valueFormatter: (params: GridCellParams) => formatCurrency(Number(params)) },
         {
             field: 'percentage_spent_by_category',
             headerName: 'Percetagem de gasto por categoria',
-            width: 400,
+            width: 350,
+            headerAlign: 'center',
             renderCell: (params) => (
                 <div className='flex py-4'>
                     <Box
@@ -98,7 +99,8 @@ const FinancialAnalysisGrid: React.FC<FinancialGridProps> = ({ farm_id }) => {
         {
             field: 'percentage_gains_by_category',
             headerName: 'Percetagem de ganhos por categoria',
-            width: 400,
+            width: 350,
+            headerAlign: 'center',
             renderCell: (params) => (
                 <div className='flex py-4'>
                     <Box
