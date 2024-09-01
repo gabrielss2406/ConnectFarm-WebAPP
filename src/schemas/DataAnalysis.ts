@@ -70,7 +70,9 @@ export const FinancialCurrentSchema = z.object({
   year: z.number(),
   monthly: z.object({
     total_spent: z.number(),
-    total_received: z.number()
+    total_received: z.number(),
+    spent_change: z.number(),
+    received_change: z.number()
   }),
   yearly: z.object({
     total_spent: z.number(),

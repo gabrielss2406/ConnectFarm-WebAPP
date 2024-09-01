@@ -64,30 +64,32 @@ const FinancialAnalysisGrid: React.FC<FinancialGridProps> = ({ farm_id }) => {
                         }}
                     >
                         {params.value.map((item: { category: string, percentual: number }, index: number) => (
-                            <Tooltip
-                                key={index}
-                                title={`${item.category}: ${item.percentual.toFixed(1)}%`}
-                                placement="top"
-                                arrow
-                            >
-                                <Box
+                            item.percentual > 0 && (
+                                <Tooltip
                                     key={index}
-                                    sx={{
-                                        width: `${item.percentual}%`,
-                                        backgroundColor: getColorByCategory(item.category),
-                                        height: 20,
-                                        color: 'white',
-                                        textAlign: 'center',
-                                        lineHeight: '20px',
-                                        fontSize: 12,
-                                        display: 'flex',
-                                        justifyContent: 'center',
-                                        alignItems: 'center'
-                                    }}
+                                    title={`${item.category}: ${item.percentual.toFixed(1)}%`}
+                                    placement="top"
+                                    arrow
                                 >
-                                    {`${item.percentual.toFixed(1)}%`}
-                                </Box>
-                            </Tooltip>
+                                    <Box
+                                        key={index}
+                                        sx={{
+                                            width: `${item.percentual}%`,
+                                            backgroundColor: getColorByCategory(item.category),
+                                            height: 20,
+                                            color: 'white',
+                                            textAlign: 'center',
+                                            lineHeight: '20px',
+                                            fontSize: 12,
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center'
+                                        }}
+                                    >
+                                        {`${item.percentual.toFixed(1)}%`}
+                                    </Box>
+                                </Tooltip>
+                            )
                         ))}
                     </Box>
                 </div>
@@ -110,30 +112,32 @@ const FinancialAnalysisGrid: React.FC<FinancialGridProps> = ({ farm_id }) => {
                         }}
                     >
                         {params.value.map((item: { category: string, percentual: number }, index: number) => (
-                            <Tooltip
-                                key={index}
-                                title={`${item.category}: ${item.percentual.toFixed(1)}%`}
-                                placement="top"
-                                arrow
-                            >
-                                <Box
+                            item.percentual > 0 && (
+                                <Tooltip
                                     key={index}
-                                    sx={{
-                                        width: `${item.percentual}%`,
-                                        backgroundColor: getColorByCategory(item.category),
-                                        height: 20,
-                                        color: 'white',
-                                        textAlign: 'center',
-                                        lineHeight: '20px',
-                                        fontSize: 12,
-                                        display: 'flex',
-                                        justifyContent: 'center',
-                                        alignItems: 'center'
-                                    }}
+                                    title={`${item.category}: ${item.percentual.toFixed(1)}%`}
+                                    placement="top"
+                                    arrow
                                 >
-                                    {`${item.percentual.toFixed(1)}%`}
-                                </Box>
-                            </Tooltip>
+                                    <Box
+                                        key={index}
+                                        sx={{
+                                            width: `${item.percentual}%`,
+                                            backgroundColor: getColorByCategory(item.category),
+                                            height: 20,
+                                            color: 'white',
+                                            textAlign: 'center',
+                                            lineHeight: '20px',
+                                            fontSize: 12,
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center'
+                                        }}
+                                    >
+                                        {`${item.percentual.toFixed(1)}%`}
+                                    </Box>
+                                </Tooltip>
+                            )
                         ))}
                     </Box>
                 </div>

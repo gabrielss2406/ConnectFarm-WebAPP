@@ -35,8 +35,8 @@ const FinancialCurrent: React.FC<FinancialCurrentProps> = ({ farm_id }) => {
                 <p>Carregando...</p>
             ) : (
                 <>
-                    <InformationExpenses expenseType={`Gastos de ${data.month}`} amount={data.monthly.total_spent} invertColor={false} />
-                    <InformationExpenses expenseType={`Ganhos de ${data.month}`} amount={data.monthly.total_received} invertColor={true} />
+                    <InformationExpenses expenseType={`Gastos de ${data.month}`} amount={data.monthly.total_spent} invertColor={false} change={data.monthly.spent_change} />
+                    <InformationExpenses expenseType={`Ganhos de ${data.month}`} amount={data.monthly.total_received} invertColor={true} change={data.monthly.received_change} />
                     <InformationExpenses expenseType={`Gastos de ${data.year}`} amount={data.yearly.total_spent} invertColor={false} />
                     <InformationExpenses expenseType={`Ganhos de ${data.year}`} amount={data.yearly.total_received} invertColor={true} />
                 </>
