@@ -14,23 +14,23 @@ const products: Product[] = [
     {
         id: 1,
         image: Logo,
-        name: 'Razão de Bezerros Desmamados',
-        price: 'R$ 499,00',
-        description: 'Gráfico detalhado da razão de desmame dos bezerros ao longo do ano.',
+        name: 'Balança',
+        price: 'R$ 1599,00',
+        description: 'Balança integrada com o sistema, para pesagem do gado dentro do curral!',
     },
     {
         id: 2,
         image: Logo,
-        name: 'Análise de Peso',
-        price: 'R$ 349,00',
-        description: 'Análise completa de variação de peso do gado em diferentes períodos.',
+        name: 'Identificação do gado',
+        price: 'R$ 5,00 (unidade) ou R$ 400,00 (centena)',
+        description: 'Identificação única de cada gado, também integrado com nosso sistema.',
     },
     {
         id: 3,
         image: Logo,
-        name: 'Controle de Vacinas',
-        price: 'R$ 199,00',
-        description: 'Relatórios detalhados sobre vacinas aplicadas e próximas doses.',
+        name: 'Serviço de localização',
+        price: 'R$ a definir',
+        description: 'Sistema de geolocalização do gado dentro da propriedade, totalmente personalizado.',
     },
 ];
 
