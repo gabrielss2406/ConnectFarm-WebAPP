@@ -6,6 +6,7 @@ import { ChartCalvesRatio } from "@/components/Analysis/calvesRatio";
 import { ChartCalvesTime } from "@/components/Analysis/calvesTime";
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 import Navigation from "@/components/shared/components/navigation";
+import { Grip } from "lucide-react";
 
 interface ChartItem {
     id: string;
@@ -123,12 +124,15 @@ export default function CalvesPage() {
                                     {charts.map((chart, index) => (
                                         <Draggable key={chart.id} draggableId={chart.id} index={index}>
                                             {(provided) => (
-                                                <div
-                                                    ref={provided.innerRef}
-                                                    {...provided.draggableProps}
-                                                    {...provided.dragHandleProps}
-                                                >
-                                                    {chart.component}
+                                                <div ref={provided.innerRef} {...provided.draggableProps}>
+                                                    <div className="flex items-center">
+                                                        <div {...provided.dragHandleProps}>
+                                                            <Grip size={30} className="cursor-pointer border border-b-0 bg-card m-0 -mb-0.5 z-50 p-0.5 mt-1" />
+                                                        </div>
+                                                    </div>
+                                                    <div id={chart.id} className="element">
+                                                        {chart.component}
+                                                    </div>
                                                 </div>
                                             )}
                                         </Draggable>

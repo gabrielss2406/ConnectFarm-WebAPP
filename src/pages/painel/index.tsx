@@ -5,8 +5,8 @@ import { LoadingSpinner } from "@/components/shared/components/loading";
 import FinancialAnalysisGrid from "@/components/Analysis/financialsDataGrid";
 import FinancialCurrent from "@/components/Analysis/financialsCards";
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
-import { Element } from 'react-scroll';
 import Navigation from "@/components/shared/components/navigation";
+import { Grip } from "lucide-react";
 
 interface ChartItem {
   id: string;
@@ -124,13 +124,12 @@ export default function Home() {
                   {charts.map((chart, index) => (
                     <Draggable key={chart.id} draggableId={chart.id} index={index}>
                       {(provided) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          className="w-full"
-                        >
-                          {/* Wrap component in a div to avoid the issue with Element */}
+                        <div ref={provided.innerRef} {...provided.draggableProps} className="w-full">
+                          <div className="flex items-center">
+                            <div {...provided.dragHandleProps}>
+                              <Grip className="cursor-pointer" />
+                            </div>
+                          </div>
                           <div id={chart.id} className="element">
                             {chart.component}
                           </div>
@@ -143,10 +142,6 @@ export default function Home() {
               )}
             </Droppable>
           </DragDropContext>
-          {/* <main className="flex-grow flex w-full h-auto flex-wrap justify-around gap-4 pt-4 flex-row p-10">
-            <FinancialCurrent farm_id={activeFarmId} />
-            <FinancialAnalysisGrid farm_id={activeFarmId} />
-          </main> */}
         </div>
       )}
     </div>

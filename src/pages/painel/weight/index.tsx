@@ -7,6 +7,7 @@ import { ChartWeightVariationMonth } from "@/components/Analysis/weightVariation
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 import Navigation from "@/components/shared/components/navigation";
 import { Element } from 'react-scroll';
+import { Grip } from "lucide-react";
 
 interface ChartItem {
     id: string;
@@ -116,28 +117,29 @@ export default function WeightPage() {
                     <DragDropContext onDragEnd={onDragEnd}>
                         <Droppable droppableId="droppable">
                             {(provided) => (
-                                <footer
-                                    className="flex flex-col sm:items-center items-start gap-4 p-10 pt-2 overflow-x-auto"
+                                <div
+                                    className="flex flex-col w-full h-full p-10 pt-2 overflow-x-auto"
                                     ref={provided.innerRef}
                                     {...provided.droppableProps}
                                 >
                                     {charts.map((chart, index) => (
                                         <Draggable key={chart.id} draggableId={chart.id} index={index}>
                                             {(provided) => (
-                                                <div
-                                                    ref={provided.innerRef}
-                                                    {...provided.draggableProps}
-                                                    {...provided.dragHandleProps}
-                                                >
-                                                    <Element name={chart.id} className="element">
+                                                <div ref={provided.innerRef} {...provided.draggableProps} className="w-full">
+                                                    <div className="flex items-center">
+                                                        <div {...provided.dragHandleProps}>
+                                                            <Grip size={30} className="cursor-pointer border border-b-0 bg-card m-0 -mb-0.5 z-50 p-0.5 mt-1" />
+                                                        </div>
+                                                    </div>
+                                                    <div id={chart.id} className="element">
                                                         {chart.component}
-                                                    </Element>
+                                                    </div>
                                                 </div>
                                             )}
                                         </Draggable>
                                     ))}
                                     {provided.placeholder}
-                                </footer>
+                                </div>
                             )}
                         </Droppable>
                     </DragDropContext>

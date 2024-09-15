@@ -77,7 +77,7 @@ export const ChartWeightVariation: React.FC<ChartWeightVariationProps> = ({ farm
                 {loading ? (
                     <p>Carregando...</p>
                 ) : (
-                    <Chart options={chartOptions} series={chartSeries} type="line" width="170%" height={350} />
+                    <Chart options={chartOptions} series={chartSeries} type="line" width="100%" height={350} />
                 )}
             </CardContent>
         </Card>

@@ -96,7 +96,7 @@ export const ChartWeightVariationMonth: React.FC<ChartWeightVariationMonthProps>
                 {loading ? (
                     <p>Carregando...</p>
                 ) : (
-                    <Chart options={chartOptions} series={chartSeries} type="line" width="800" height={350} />
+                    <Chart options={chartOptions} series={chartSeries} type="line" width="100%" height={350} />
                 )}
             </CardContent>
         </Card>
