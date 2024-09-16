@@ -39,7 +39,8 @@ export const WeightVariationSchema = z.array(
   z.object({
     average_weight: z.number(),
     month: z.number(),
-    year: z.number()
+    year: z.number(),
+    precipitation: z.number()
   })
 )
 

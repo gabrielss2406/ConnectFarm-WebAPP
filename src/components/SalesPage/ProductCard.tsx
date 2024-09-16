@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/shared/ui/popover';
 import { Button } from '@/components/shared/ui/button';
@@ -18,8 +18,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ id, image, name, price
         setShowPopover(!showPopover);
     };
 
+    useEffect(() => {
+
+    }, []);
+
     return (
-        <div className="bg-[#1e1e1e] rounded-lg shadow-md p-6 flex flex-col items-center hover:shadow-lg transition-shadow">
+        <div key={id} className="bg-[#1e1e1e] rounded-lg shadow-md p-6 flex flex-col items-center hover:shadow-lg transition-shadow">
             <Image src={image} alt={name} width={150} height={150} className="rounded-full" />
             <h2 className="text-2xl font-semibold mt-4">{name}</h2>
             <p className="text-lg text-gray-400 mt-2">{price}</p>

@@ -21,8 +21,7 @@ export const ChartWeightVariation: React.FC<ChartWeightVariationProps> = ({ farm
             try {
                 setLoading(true);
                 const returnData = await dataService.analysisWeightVariation(farm_id);
-
-                setData(returnData)
+                setData(returnData);
             } catch (error) {
                 console.error('Erro ao carregar análise das pesagens:', error);
             }
@@ -37,41 +36,69 @@ export const ChartWeightVariation: React.FC<ChartWeightVariationProps> = ({ farm
             type: 'line',
             height: 350,
             zoom: {
-                enabled: false
-            }
+                enabled: false,
+            },
         },
+        colors: ['#28a745', '#007bff'],
         xaxis: {
-            categories: data.map(item => `${item.month}/${item.year}`),
+            categories: data.map((item) => `${item.month}/${item.year}`),
             title: {
-                text: 'Mês/Ano'
-            }
+                text: 'Mês/Ano',
+            },
         },
-        yaxis: {
-            title: {
-                text: 'Peso Médio (kg)'
-            }
-        },
+        yaxis: [
+            {
+                title: {
+                    text: 'Peso Médio (kg)',
+                },
+                opposite: false,
+            },
+            {
+                title: {
+                    text: 'Precipitação (mm)',
+                },
+                opposite: true,
+            },
+        ],
         stroke: {
-            curve: 'smooth'
+            curve: 'smooth',
         },
         title: {
-            text: 'Variação de Peso ao Longo do Ano',
-            align: 'left'
-        }
+            text: 'Variação de Peso e Precipitação ao Longo do Ano',
+            align: 'left',
+        },
+        legend: {
+            show: true,
+            position: 'top',
+            horizontalAlign: 'center',
+            labels: {
+                colors: '#ffffff',
+                useSeriesColors: true,
+            },
+        },
+        tooltip: {
+            shared: true,
+            intersect: false,
+        },
     };
 
     const chartSeries = [
         {
             name: 'Peso Médio',
-            data: data.map(item => item.average_weight ?? 0)
-        }
+            data: data.map((item) => item.average_weight ?? 0),
+        },
+        {
+            name: 'Precipitação',
+            data: data.map((item) => item.precipitation ?? 0),
+            type: 'line',
+        },
     ];
 
     return (
         <Card>
             <CardHeader>
-                <CardTitle>Variação de Peso</CardTitle>
-                <CardDescription>Análise de peso médio ao longo de todo o tempo</CardDescription>
+                <CardTitle>Variação de Peso e Precipitação</CardTitle>
+                <CardDescription>Análise de peso médio e precipitação ao longo de todo o tempo</CardDescription>
             </CardHeader>
             <CardContent>
                 {loading ? (
