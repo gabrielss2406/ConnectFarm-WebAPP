@@ -1,7 +1,7 @@
 import api from './api';
 import Cookies from 'js-cookie';
 import dotenv from 'dotenv';
-import { FinancialByCowType, FinancialCurrentType } from '@/schemas/DataAnalysis';
+import { FinancialByCowType, FinancialCurrentType, FinancialPredictType } from '@/schemas/DataAnalysis';
 
 dotenv.config();
 
@@ -34,6 +34,16 @@ export class DataFinancialAnalysisService {
             return response.data;
         } catch (error) {
             throw new Error('Error on analysis of current financials');
+        }
+    }
+
+    public async analysisFinancialPredict(farm_id: string): Promise<FinancialPredictType> {
+        try {
+            const response = await api.get(`/data/${farm_id}/financial/predict`);
+
+            return response.data;
+        } catch (error) {
+            throw new Error('Error on analysis of predict financials');
         }
     }
 }

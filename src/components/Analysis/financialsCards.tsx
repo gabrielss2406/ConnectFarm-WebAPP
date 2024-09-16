@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { DataGrid } from '@mui/x-data-grid';
 import { FinancialCurrentType } from '@/schemas/DataAnalysis';
 import { DataFinancialAnalysisService } from '@/services/financialAnalysis';
 import InformationExpenses from '../HomePage/InformationExpenses';

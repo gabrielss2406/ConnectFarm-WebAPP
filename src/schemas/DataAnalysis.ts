@@ -81,6 +81,13 @@ export const FinancialCurrentSchema = z.object({
   })
 })
 
+export const FinancialPredictionSchema = z.object({
+  month_name: z.string(),
+  entry_prediction: z.number(),
+  exit_prediction: z.number(),
+  entry_variation_percent: z.number(),
+  exit_variation_percent: z.number()
+})
 
 export type CalvesRatioType = z.infer<typeof CalvesRatioSchema>
 export type CalvesTimeType = z.infer<typeof CalvesTimeSchema>
@@ -94,3 +101,4 @@ export type WeightVariationMonthType = z.infer<typeof WeightVariationMonthSchema
 
 export type FinancialByCowType = z.infer<typeof FinancialByCowSchema>
 export type FinancialCurrentType = z.infer<typeof FinancialCurrentSchema>
+export type FinancialPredictType = z.infer<typeof FinancialPredictionSchema>

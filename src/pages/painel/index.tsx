@@ -6,7 +6,8 @@ import FinancialAnalysisGrid from "@/components/Analysis/financialsDataGrid";
 import FinancialCurrent from "@/components/Analysis/financialsCards";
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 import Navigation from "@/components/shared/components/navigation";
-import { Grip } from "lucide-react";
+import { Component, Grip } from "lucide-react";
+import FinancialPredict from "@/components/Analysis/financialPredict";
 
 interface ChartItem {
   id: string;
@@ -53,7 +54,8 @@ export default function Home() {
       const storedOrder = localStorage.getItem(`charts-order-weight-${activeFarmId}`);
       const initialCharts = [
         { id: 'Visão geral sobre finanças', component: <FinancialCurrent farm_id={activeFarmId} /> },
-        { id: 'Tabela das finanças de cada matriz', component: <FinancialAnalysisGrid farm_id={activeFarmId} /> }
+        { id: 'Tabela das finanças de cada matriz', component: <FinancialAnalysisGrid farm_id={activeFarmId} /> },
+        { id: 'Previsão sobre finanças', component: <FinancialPredict farm_id={activeFarmId} /> }
       ];
 
       if (storedOrder) {

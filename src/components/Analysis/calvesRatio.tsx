@@ -34,7 +34,6 @@ export const ChartCalvesRatio: React.FC<ChartCalvesRatioProps> = ({ farm_id }) =
         fetchFarms();
     }, [farm_id]);
 
-    console.log(farm_id)
     const [chartOptions, setChartOptions] = useState<ApexOptions>({
         labels: ['Bezerros Desmamados', 'Bezerros Não Desmamados'],
         colors: ['#00E396', '#FF4560'],
