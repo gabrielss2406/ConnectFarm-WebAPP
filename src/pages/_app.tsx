@@ -9,8 +9,10 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   const pagesWithoutSidebar = ['/', '/login', '/register', '/sales'];
+  const errorPage = '/_error';
 
-  const shouldRenderSidebar = !pagesWithoutSidebar.includes(router.pathname);
+  // Check if the current route should not display the sidebar
+  const shouldRenderSidebar = !pagesWithoutSidebar.includes(router.pathname) && router.pathname !== errorPage;
 
   return (
     <>
