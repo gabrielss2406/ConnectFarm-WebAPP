@@ -38,7 +38,7 @@ export const LogoutButton: React.FC<any> = ({ routeName }) => {
           onClick={() => setShowPopover(true)}
         >
           <LogOut color={isHovered ? "#3E623A" : "#8E8D8D"} />
-          Logout
+          Sair
         </div>
       </PopoverTrigger>
       {showPopover && (
@@ -60,7 +60,7 @@ export const LogoutButton: React.FC<any> = ({ routeName }) => {
                   setShowPopover(false);
                 }}
               >
-                Logout
+                Sair
               </Button>
             </div>
           </div>

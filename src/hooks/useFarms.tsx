@@ -23,14 +23,12 @@ export const useFarms = () => {
                 throw new Error('User not authenticated');
             }
 
-            // Verificar e usar cache
             if (farmCache[token]) {
                 setFarms(farmCache[token]);
                 setLoading(false);
                 return;
             }
 
-            // Buscar dados
             const farmService = new FarmService();
             const farmsList = await farmService.getFarmsFromUser();
 
@@ -39,7 +37,6 @@ export const useFarms = () => {
                 name: farm.name
             }));
 
-            // Atualizar cache e estado
             farmCache[token] = farmData;
             setFarms(farmData);
         } catch (error) {

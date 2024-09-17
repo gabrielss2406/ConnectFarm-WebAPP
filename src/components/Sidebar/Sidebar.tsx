@@ -5,8 +5,9 @@ import { SidebarRoutes } from './SidebarRoutes';
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from '../shared/ui/sheet';
 import { Button } from '../shared/ui/button';
 import Link from 'next/link';
-import { AlignJustify, Cross, FilePieChart, Scale, Wallet } from 'lucide-react';
+import { AlignJustify, Cross, Scale, Wallet } from 'lucide-react';
 import { LogoutButton } from '../PainelPage/LogoutButton';
+import { LogoutButtonMobile } from '../PainelPage/LogoutButtonMobile';
 import { PiCow } from "react-icons/pi";
 import { TbVaccine } from "react-icons/tb";
 
@@ -31,6 +32,7 @@ export default function Sidebar() {
               <Link href="/painel/vaccines" className="text-white hover:text-gray-300 mt-2 text-center">Vacinas</Link>
               <Link href="/painel/health" className="text-white hover:text-gray-300 mt-2 text-center">Saúde</Link>
               <Link href="/painel/weight" className="text-white hover:text-gray-300 mt-2 text-center">Peso</Link>
+              <LogoutButtonMobile />
             </div>
           </SheetContent>
         </Sheet>
