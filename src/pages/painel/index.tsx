@@ -6,7 +6,7 @@ import FinancialAnalysisGrid from "@/components/Analysis/financialsDataGrid";
 import FinancialCurrent from "@/components/Analysis/financialsCards";
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 import Navigation from "@/components/shared/components/navigation";
-import { Component, Grip } from "lucide-react";
+import { Grip } from "lucide-react";
 import FinancialPredict from "@/components/Analysis/financialPredict";
 
 interface ChartItem {
@@ -51,7 +51,7 @@ export default function Home() {
 
   useEffect(() => {
     if (activeFarmId) {
-      const storedOrder = localStorage.getItem(`charts-order-weight-${activeFarmId}`);
+      const storedOrder = localStorage.getItem(`charts-order-financial-${activeFarmId}`);
       const initialCharts = [
         { id: 'Visão geral sobre finanças', component: <FinancialCurrent farm_id={activeFarmId} /> },
         { id: 'Tabela das finanças de cada matriz', component: <FinancialAnalysisGrid farm_id={activeFarmId} /> },
@@ -85,16 +85,17 @@ export default function Home() {
 
     setCharts(reorderedCharts);
     if (activeFarmId) {
-      localStorage.setItem(`charts-order-weight-${activeFarmId}`, JSON.stringify(reorderedCharts.map(chart => chart.id)));
+      localStorage.setItem(`charts-order-financial-${activeFarmId}`, JSON.stringify(reorderedCharts.map(chart => chart.id)));
     }
   };
 
   const resetChartsOrder = () => {
     if (activeFarmId) {
-      localStorage.removeItem(`charts-order-weight-${activeFarmId}`);
+      localStorage.removeItem(`charts-order-financial-${activeFarmId}`);
       setCharts([
         { id: 'Visão geral sobre finanças', component: <FinancialCurrent farm_id={activeFarmId} /> },
-        { id: 'Tabela das finanças de cada matriz', component: <FinancialAnalysisGrid farm_id={activeFarmId} /> }
+        { id: 'Tabela das finanças de cada matriz', component: <FinancialAnalysisGrid farm_id={activeFarmId} /> },
+        { id: 'Previsão sobre finanças', component: <FinancialPredict farm_id={activeFarmId} /> }
       ]);
     }
   };
