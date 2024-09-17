@@ -2,7 +2,7 @@ import { UserService } from "@/services/user";
 import { Loader2, LogOut } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import {
   Popover,
   PopoverContent,

@@ -22,6 +22,7 @@ export class UserService {
 
       return response.data;
     } catch (error) {
+      console.error(error)
       throw new Error('Login failed');
     }
   }

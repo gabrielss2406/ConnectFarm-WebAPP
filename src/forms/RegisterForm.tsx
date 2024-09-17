@@ -8,11 +8,11 @@ import { ButtonCustom } from "@/components/shared/ui/button-custom";
 import { useState } from "react";
 import { UserService } from "@/services/user";
 import { toast } from "sonner"
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 
 export default function RegisterForm() {
   const [loading, setLoading] = useState(false);
-	const router = useRouter()
+  const router = useRouter()
 
   const form = useForm<RegisterType>({
     mode: "all",

@@ -25,6 +25,7 @@ export default function Navbar() {
             <div className="grid gap-4 py-4 justify-center mt-4">
               <Link href="/" className="text-white hover:text-gray-300 mt-2 text-center">Página inicial</Link>
               <Link href="/painel" className="text-white hover:text-gray-300 mt-2 text-center">Acessar Painel</Link>
+              <Link href="/demo" className="text-white hover:text-gray-300 mt-2 text-center">Acessar Demo</Link>
               <Link href="/sales" className="text-white hover:text-gray-300 mt-2 text-center">Produtos</Link>
               <Link href="/register" className="text-white hover:text-gray-300 mt-2 text-center">Registrar</Link>
               <Link href="/login" className="text-white hover:text-gray-300 mt-2 text-center">Entrar</Link>
@@ -49,6 +50,7 @@ export default function Navbar() {
         `}>
           <Link href="/" className="text-white hover:text-gray-300 mt-2">Página inicial</Link>
           <Link href="/painel" className="text-white hover:text-gray-300 mt-2">Acessar Painel</Link>
+          <Link href="/demo" className="text-white hover:text-gray-300 mt-2">Acessar Demo</Link>
           <Link href="/sales" className="text-white hover:text-gray-300 mt-2">Produtos</Link>
           <Link href="/register" className="text-white hover:text-gray-300 mt-2">Registrar</Link>
           <Link href="/login" className="text-white hover:text-gray-300 mt-2">Entrar</Link>

@@ -9,7 +9,7 @@ import { useState } from "react";
 import { ButtonCustom } from "@/components/shared/ui/button-custom";
 import { toast } from "sonner";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 
 export default function LoginForm() {
   const [loading, setLoading] = useState(false);
