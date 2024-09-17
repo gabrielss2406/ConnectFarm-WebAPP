@@ -8,6 +8,7 @@ import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautif
 import Navigation from "@/components/shared/components/navigation";
 import { Element } from 'react-scroll';
 import { Grip } from "lucide-react";
+import { useFarms } from "@/hooks/useFarms";
 
 interface ChartItem {
     id: string;
@@ -18,35 +19,29 @@ export default function WeightPage() {
     const [activeFarm, setActiveFarm] = useState<string>("");
     const [farms, setFarms] = useState<{ id: string; name: string }[]>([]);
     const [activeFarmId, setActiveFarmId] = useState<string | null>(null);
-    const [loading, setLoading] = useState<boolean>(false);
     const [charts, setCharts] = useState<ChartItem[]>([]);
+    const { farms: farmsData, loading: loadingData, error: errorData } = useFarms();
 
     useEffect(() => {
         const fetchFarms = async () => {
             try {
-                setLoading(true);
-                const farmService = new FarmService();
-                const farmsList = await farmService.getFarmsFromUser();
+                setFarms(farmsData);
 
-                const farmData = farmsList.map(farm => ({
-                    id: farm.farm_id,
-                    name: farm.name
-                }));
+                console.log(farmsData)
 
-                setFarms(farmData);
-
-                if (farmData.length > 0) {
-                    setActiveFarmId(farmData[0].id);
-                    setActiveFarm(farmData[0].name);
+                if (farmsData.length > 0) {
+                    const firstFarm = farmsData[0];
+                    setActiveFarmId(firstFarm.id);
+                    setActiveFarm(firstFarm.name);
                 }
             } catch (error) {
-                console.error('Erro ao carregar lista de fazendas:', error);
+                console.error('Erro ao carregar lista de fazendas:', errorData);
             }
-            setLoading(false);
         };
 
-        fetchFarms();
-    }, []);
+        if (farmsData)
+            fetchFarms();
+    }, [farmsData]);
 
     useEffect(() => {
         if (activeFarmId) {
@@ -100,7 +95,7 @@ export default function WeightPage() {
 
     return (
         <div className="flex flex-col min-h-screen bg-[#F1F1F1] sm:ml-[15%]">
-            {loading ? (
+            {loadingData ? (
                 <LoadingSpinner label='Carregando dados da fazenda...' />
             ) : (
                 <div>

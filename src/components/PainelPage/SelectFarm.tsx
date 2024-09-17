@@ -31,7 +31,7 @@ export const SelectFarm: React.FC<SelectFarmProps> = ({ farms, activeFarmId, set
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Farms</SelectLabel>
-          {farms.map(farm => (
+          {farms?.map(farm => (
             <SelectItem key={farm.id} value={farm.id}>
               {farm.name}
             </SelectItem>

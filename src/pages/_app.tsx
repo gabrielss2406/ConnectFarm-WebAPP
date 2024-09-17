@@ -3,7 +3,6 @@ import Sidebar from "@/components/Sidebar/Sidebar";
 import "@/styles/globals.css";
 import { CircleCheck, CircleX, Info, Loader2, TriangleAlert } from "lucide-react";
 import type { AppProps } from "next/app";
-import Head from "next/head";
 import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }: AppProps) {
