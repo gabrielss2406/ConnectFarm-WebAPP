@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { UserService } from '@/services/user';
 import { LoadingSpinner } from '@/components/shared/components/loading';
 import { useRouter } from 'next/router';
+import { toast } from 'sonner';
 
 const DemoLogin = () => {
     const router = useRouter();
@@ -15,12 +16,14 @@ const DemoLogin = () => {
                 };
 
                 const userService = new UserService()
+                await userService.logout();
                 await userService.login(demoCredentials.email, demoCredentials.password)
 
                 router.push("/painel");
+                toast.success("Usuário logado na demo com sucesso!");
             } catch (error) {
-                console.log(error)
                 console.error('Erro no login da demo:', error);
+                toast.error("Erro ao fazer login na demo!");
             }
         };
 
