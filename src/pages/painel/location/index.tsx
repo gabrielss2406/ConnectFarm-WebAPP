@@ -4,6 +4,7 @@ import { useFarms } from "@/hooks/useFarms";
 import { DataLocationService } from "@/services/location";
 import { LocationDataType } from "@/schemas/DataAnalysis";
 import 'leaflet/dist/leaflet.css';
+import { Button } from "@/components/shared/ui/button";
 
 // Importar o Leaflet dinamicamente, garantindo que seja carregado apenas no lado do cliente
 const MapContainer = dynamic(() => import("react-leaflet").then(mod => mod.MapContainer), { ssr: false });
@@ -91,10 +92,16 @@ export default function WeightPage() {
     }, [farmsData]);
 
     return (
-        <div className="flex flex-col min-h-screen bg-[#F1F1F1] sm:ml-[15%]">
+        <div className="flex flex-col min-h-screen bg-[#F1F1F1] justify-center items-center">
             {locations ? (
-                <div>
-                    <MapContainer center={[-22.25933, -45.69096]} zoom={16} style={{ height: "500px", width: "60%" }}>
+                <div className="flex flex-col w-full justify-center items-center gap-10">
+                    <Button
+                        onClick={() => window.history.back()}
+                        className="top-0 left-0"
+                    >
+                        Voltar
+                    </Button>
+                    <MapContainer center={[-22.25933, -45.69096]} zoom={16} style={{ height: "600px", width: "80%" }}>
                         <TileLayer
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

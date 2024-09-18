@@ -5,7 +5,7 @@ import { SidebarRoutes } from './SidebarRoutes';
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from '../shared/ui/sheet';
 import { Button } from '../shared/ui/button';
 import Link from 'next/link';
-import { AlignJustify, Cross, Scale, Wallet } from 'lucide-react';
+import { AlignJustify, Cross, Scale, Wallet, MapPinned } from 'lucide-react';
 import { LogoutButton } from '../PainelPage/LogoutButton';
 import { LogoutButtonMobile } from '../PainelPage/LogoutButtonMobile';
 import { PiCow } from "react-icons/pi";
@@ -14,7 +14,7 @@ import { TbVaccine } from "react-icons/tb";
 export default function Sidebar() {
   return (
     <nav>
-      <div className='sm:hidden fixed'>
+      <div className='sm:hidden fixed z-50'>
         <Sheet>
           <SheetTrigger asChild>
             <Button className='bg-[#303030]'><AlignJustify /></Button>
@@ -32,6 +32,7 @@ export default function Sidebar() {
               <Link href="/painel/vaccines" className="text-white hover:text-gray-300 mt-2 text-center">Vacinas</Link>
               <Link href="/painel/health" className="text-white hover:text-gray-300 mt-2 text-center">Saúde</Link>
               <Link href="/painel/weight" className="text-white hover:text-gray-300 mt-2 text-center">Peso</Link>
+              <Link href="/painel/location" className="text-white hover:text-gray-300 mt-2 text-center">Localização</Link>
               <LogoutButtonMobile />
             </div>
           </SheetContent>
@@ -54,6 +55,7 @@ export default function Sidebar() {
             <SidebarRoutes icon={TbVaccine} pageName="Vacinas" routeName="/painel/vaccines" />
             <SidebarRoutes icon={Cross} pageName="Saúde" routeName="/painel/health" />
             <SidebarRoutes icon={Scale} pageName="Peso" routeName="/painel/weight" />
+            <SidebarRoutes icon={MapPinned} pageName="Localização" routeName="/painel/location" />
             <LogoutButton />
           </div>
         </div>

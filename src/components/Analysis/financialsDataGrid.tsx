@@ -9,6 +9,16 @@ interface FinancialGridProps {
     farm_id: string
 }
 
+const localizedTextsMap = {
+    columnMenuUnsort: "não classificado",
+    columnMenuSortAsc: "Classificar por ordem crescente",
+    columnMenuSortDesc: "Classificar por ordem decrescente",
+    columnMenuFilter: "Filtro",
+    columnMenuHideColumn: "Ocultar",
+    columnMenuShowColumns: "Mostrar colunas",
+    columnMenuManageColumns: "Organizar colunas"
+};
+
 const FinancialAnalysisGrid: React.FC<FinancialGridProps> = ({ farm_id }) => {
     const [data, setData] = useState<FinancialByCowType>([]);
     const [loading, setLoading] = useState<boolean>(true);
@@ -153,6 +163,7 @@ const FinancialAnalysisGrid: React.FC<FinancialGridProps> = ({ farm_id }) => {
                 rows={data}
                 columns={columns}
                 loading={loading}
+                localeText={localizedTextsMap}
             />
         </div>
     );

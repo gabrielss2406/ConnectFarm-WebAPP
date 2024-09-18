@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
-  const pagesWithoutSidebar = ['/', '/login', '/register', '/sales'];
+  const pagesWithoutSidebar = ['/', '/login', '/register', '/sales', '/painel/location'];
   const errorPage = '/_error';
 
   // Check if the current route should not display the sidebar
