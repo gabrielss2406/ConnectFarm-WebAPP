@@ -89,6 +89,23 @@ export const FinancialPredictionSchema = z.object({
   exit_variation_percent: z.number()
 })
 
+export const LocationDataSchema = z.object({
+  locations: z.array(z.object({
+    cowId: z.number(),
+    latitude: z.number(),
+    longitude: z.number(),
+    timestamp: z.string()
+  })),
+  top_zones: z.array(z.object({
+    total_count: z.number(),
+    latitude_range: z.string(),
+    longitude_range: z.string()
+  })),
+  out_of_bounds_cows: z.array(z.object({
+    cowId: z.number()
+  }))
+})
+
 export type CalvesRatioType = z.infer<typeof CalvesRatioSchema>
 export type CalvesTimeType = z.infer<typeof CalvesTimeSchema>
 
@@ -102,3 +119,4 @@ export type WeightVariationMonthType = z.infer<typeof WeightVariationMonthSchema
 export type FinancialByCowType = z.infer<typeof FinancialByCowSchema>
 export type FinancialCurrentType = z.infer<typeof FinancialCurrentSchema>
 export type FinancialPredictType = z.infer<typeof FinancialPredictionSchema>
+export type LocationDataType = z.infer<typeof LocationDataSchema>
