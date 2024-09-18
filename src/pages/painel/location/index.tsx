@@ -137,9 +137,11 @@ export default function WeightPage() {
                         {topZones.map((zone, index) => {
                             const [latMin, latMax] = zone.latitude_range.split('--').map(coord => parseFloat(coord));
                             const [lngMin, lngMax] = zone.longitude_range.split('--').map(coord => parseFloat(coord));
-                            const bounds = [
-                                [latMin, lngMin],
-                                [-latMax, -lngMax]
+
+                            // Aqui ajustamos a estrutura do bounds para ser uma tupla de tuplas [latitude, longitude]
+                            const bounds: [[number, number], [number, number]] = [
+                                [latMin, lngMin],  // Primeira tupla: ponto inferior esquerdo
+                                [-latMax, -lngMax]   // Segunda tupla: ponto superior direito
                             ];
 
                             const { color, fillColor, fillOpacity } = getZoneStyle(index);
@@ -147,7 +149,7 @@ export default function WeightPage() {
                             return (
                                 <Rectangle
                                     key={index}
-                                    bounds={bounds}
+                                    bounds={bounds} // Aqui passamos o bounds no formato esperado
                                     color={color}
                                     fillColor={fillColor}
                                     fillOpacity={fillOpacity}
