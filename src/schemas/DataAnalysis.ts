@@ -13,6 +13,18 @@ export const CalvesTimeSchema = z.object({
   max_weaning_time: z.number()
 })
 
+export const CalvesPredictSchema = z.array(
+  z.object({
+    number: z.string(),
+    data: z.object({
+      mother_number: z.number(),
+      start_date: z.string().optional(),
+      future_date: z.string().optional(),
+      predicted_weight: z.number().optional()
+    })
+  }),
+)
+
 export const VaccinesCoverageSchema = z.object({
   total_cows: z.number(),
   vaccine_coverage: z.record(z.string(), z.number())
@@ -108,6 +120,7 @@ export const LocationDataSchema = z.object({
 
 export type CalvesRatioType = z.infer<typeof CalvesRatioSchema>
 export type CalvesTimeType = z.infer<typeof CalvesTimeSchema>
+export type CalvesPredictType = z.infer<typeof CalvesPredictSchema>
 
 export type VaccinesCoverageType = z.infer<typeof VaccinesCoverageSchema>
 

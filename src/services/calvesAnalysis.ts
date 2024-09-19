@@ -1,7 +1,7 @@
 import api from './api';
 import Cookies from 'js-cookie';
 import dotenv from 'dotenv';
-import { CalvesRatioType, CalvesTimeType } from '@/schemas/DataAnalysis';
+import { CalvesPredictType, CalvesRatioType, CalvesTimeType } from '@/schemas/DataAnalysis';
 
 dotenv.config();
 
@@ -17,23 +17,33 @@ api.interceptors.request.use((config) => {
 
 
 export class DataCalvesAnalysisService {
-  public async analysisCalvesRatio(farm_id: string) : Promise<CalvesRatioType> {
+  public async analysisCalvesRatio(farm_id: string): Promise<CalvesRatioType> {
     try {
-        const response = await api.get(`/data/${farm_id}/calves/ratio`);
-  
-        return response.data;
-      } catch (error) {
-        throw new Error('Error on analysis of calves ratio');
-      }
+      const response = await api.get(`/data/${farm_id}/calves/ratio`);
+
+      return response.data;
+    } catch (error) {
+      throw new Error('Error on analysis of calves ratio');
+    }
   }
 
-  public async analysisCalvesTime(farm_id: string) : Promise<CalvesTimeType> {
+  public async analysisCalvesTime(farm_id: string): Promise<CalvesTimeType> {
     try {
-        const response = await api.get(`/data/${farm_id}/calves/time`);
-  
-        return response.data;
-      } catch (error) {
-        throw new Error('Error on analysis of calves time');
-      }
+      const response = await api.get(`/data/${farm_id}/calves/time`);
+
+      return response.data;
+    } catch (error) {
+      throw new Error('Error on analysis of calves time');
+    }
+  }
+
+  public async analysisCalvesPredict(farm_id: string): Promise<CalvesPredictType> {
+    try {
+      const response = await api.get(`/data/${farm_id}/calves/growth`);
+
+      return response.data;
+    } catch (error) {
+      throw new Error('Error on analysis of calves predictions');
+    }
   }
 }

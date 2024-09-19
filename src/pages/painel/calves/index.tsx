@@ -1,6 +1,5 @@
 import { SelectFarm } from "@/components/PainelPage/SelectFarm";
 import { useState, useEffect } from "react";
-import { FarmService } from '@/services/farm';
 import { LoadingSpinner } from "@/components/shared/components/loading";
 import { ChartCalvesRatio } from "@/components/Analysis/calvesRatio";
 import { ChartCalvesTime } from "@/components/Analysis/calvesTime";
@@ -8,6 +7,7 @@ import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautif
 import Navigation from "@/components/shared/components/navigation";
 import { Grip } from "lucide-react";
 import { useFarms } from "@/hooks/useFarms";
+import CalvesPredictGrid from "@/components/Analysis/calvesPredict";
 
 interface ChartItem {
     id: string;
@@ -20,6 +20,8 @@ export default function CalvesPage() {
     const [activeFarmId, setActiveFarmId] = useState<string | null>(null);
     const [charts, setCharts] = useState<ChartItem[]>([]);
     const { farms: farmsData, loading: loadingData, error: errorData } = useFarms();
+
+    console.log("oi")
 
     useEffect(() => {
         const fetchFarms = async () => {
@@ -47,7 +49,8 @@ export default function CalvesPage() {
             const storedOrder = localStorage.getItem(`charts-order-calves-${activeFarmId}`);
             const initialCharts = [
                 { id: 'Razão de desmame', component: <ChartCalvesRatio farm_id={activeFarmId} /> },
-                { id: 'Tempo de desmame', component: <ChartCalvesTime farm_id={activeFarmId} /> }
+                { id: 'Tempo de desmame', component: <ChartCalvesTime farm_id={activeFarmId} /> },
+                { id: "Previsões de peso", component: <CalvesPredictGrid farm_id={activeFarmId} /> }
             ];
 
             if (storedOrder) {
@@ -86,7 +89,8 @@ export default function CalvesPage() {
             localStorage.removeItem(`charts-order-calves-${activeFarmId}`);
             setCharts([
                 { id: 'Razão de desmame', component: <ChartCalvesRatio farm_id={activeFarmId} /> },
-                { id: 'Tempo de desmame', component: <ChartCalvesTime farm_id={activeFarmId} /> }
+                { id: 'Tempo de desmame', component: <ChartCalvesTime farm_id={activeFarmId} /> },
+                { id: "Previsões de peso", component: <CalvesPredictGrid farm_id={activeFarmId} /> }
             ]);
         }
     };
