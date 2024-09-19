@@ -93,14 +93,32 @@ export default function WeightPage() {
     return (
         <div className="flex flex-col min-h-screen bg-[#F1F1F1] justify-center items-center">
             {locations ? (
-                <div className="flex flex-col w-full justify-center items-center gap-10">
-                    <Button
-                        onClick={() => window.history.back()}
-                        className="top-0 left-0"
-                    >
-                        Voltar
-                    </Button>
-                    <MapContainer center={[-22.25933, -45.69096]} zoom={16} style={{ height: "600px", width: "80%" }}>
+                <div className="flex flex-col w-full justify-center items-center gap-10 pt-2">
+                    <div className="flex flex-row items-center gap-4 justify-around">
+                        <Button
+                            onClick={() => window.history.back()}
+                            className="top-0 left-0 text-lg p-10"
+                        >
+                            Voltar
+                        </Button>
+                        <div className="bg-white p-4 rounded shadow-md z-10">
+                            <h3 className="font-bold">Legenda do Mapa</h3>
+                            <div className="flex items-center">
+                                <div className="w-4 h-4 bg-green-500 mr-2"></div>
+                                <span>Área do Terreno</span>
+                            </div>
+                            <div className="flex items-center">
+                                <div className="w-4 h-4 bg-yellow-300 mr-2"></div>
+                                <span>Zona Alta (ex.: alta concentração de gado)</span>
+                            </div>
+                            <div className="flex items-center">
+                                <div className="w-4 h-4 bg-red-500 mr-2"></div>
+                                <span>Fora do Terreno</span>
+                            </div>
+                        </div>
+                    </div>
+                    {/* <div> */}
+                    <MapContainer center={[-22.25933, -45.69096]} zoom={16} style={{ height: "600px", width: "80%", position: "relative" }}>
                         <TileLayer
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -178,6 +196,7 @@ export default function WeightPage() {
                             );
                         })}
                     </MapContainer>
+                    {/* </div> */}
                 </div>
             ) : (
                 <p>Carregando...</p>
