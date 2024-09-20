@@ -12,7 +12,6 @@ const TileLayer = dynamic(() => import("react-leaflet").then(mod => mod.TileLaye
 const Marker = dynamic(() => import("react-leaflet").then(mod => mod.Marker), { ssr: false });
 const Popup = dynamic(() => import("react-leaflet").then(mod => mod.Popup), { ssr: false });
 const Rectangle = dynamic(() => import("react-leaflet").then(mod => mod.Rectangle), { ssr: false });
-const Circle = dynamic(() => import("react-leaflet").then(mod => mod.Circle), { ssr: false });
 
 // Função para criar um ícone Leaflet personalizado
 const useCustomIcon = (color: string) => {

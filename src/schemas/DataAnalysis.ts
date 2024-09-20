@@ -30,6 +30,22 @@ export const VaccinesCoverageSchema = z.object({
   vaccine_coverage: z.record(z.string(), z.number())
 })
 
+export const VaccinesQuarterlySchema = z.object({
+  vaccination_data: z.array(
+    z.object({
+      quadrimester: z.string(),
+      total_vaccines: z.number(),
+      vaccine_types: z.object({
+        Virose: z.number(),
+        Brucelose: z.number(),
+        "Leucose Bovina": z.number(),
+        "Pneumonia Bovina": z.number()
+      })
+    })
+  ),
+  vaccine_types: z.array(z.string())
+})
+
 export const HealthHistorySchema = z.object({
   total_cows: z.number(),
   total_diseases: z.record(z.string(), z.number().nonnegative()),
@@ -123,6 +139,7 @@ export type CalvesTimeType = z.infer<typeof CalvesTimeSchema>
 export type CalvesPredictType = z.infer<typeof CalvesPredictSchema>
 
 export type VaccinesCoverageType = z.infer<typeof VaccinesCoverageSchema>
+export type VaccinesQuarterlyType = z.infer<typeof VaccinesQuarterlySchema>
 
 export type HealthHistoryType = z.infer<typeof HealthHistorySchema>
 

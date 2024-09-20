@@ -7,6 +7,7 @@ import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautif
 import Navigation from "@/components/shared/components/navigation";
 import { Grip } from "lucide-react";
 import { useFarms } from "@/hooks/useFarms";
+import VaccinationAnalysisGrid from "@/components/Analysis/vaccinesQuaterlyDataGrid";
 
 // Define the type for a chart item
 interface ChartItem {
@@ -46,7 +47,8 @@ export default function VaccinesPage() {
         if (activeFarmId) {
             const storedOrder = localStorage.getItem(`charts-order-vaccines-${activeFarmId}`);
             const initialCharts = [
-                { id: 'Cobertura das vacinas no gado', component: <ChartVaccineCoverage farm_id={activeFarmId} /> }
+                { id: 'Cobertura das vacinas no gado', component: <ChartVaccineCoverage farm_id={activeFarmId} /> },
+                { id: 'Vacinas em cada quadrimestre', component: <VaccinationAnalysisGrid farm_id={activeFarmId} /> }
             ];
 
             if (storedOrder) {
@@ -84,7 +86,8 @@ export default function VaccinesPage() {
         if (activeFarmId) {
             localStorage.removeItem(`charts-order-vaccines-${activeFarmId}`);
             setCharts([
-                { id: 'Cobertura das vacinas no gado', component: <ChartVaccineCoverage farm_id={activeFarmId} /> }
+                { id: 'Cobertura das vacinas no gado', component: <ChartVaccineCoverage farm_id={activeFarmId} /> },
+                { id: 'Vacinas em cada quadrimestre', component: <VaccinationAnalysisGrid farm_id={activeFarmId} /> }
             ]);
         }
     };
