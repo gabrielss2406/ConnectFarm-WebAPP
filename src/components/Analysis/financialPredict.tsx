@@ -34,7 +34,7 @@ const FinancialPredict: React.FC<FinancialPredictProps> = ({ farm_id }) => {
             {loading ? (
                 <LoadingSpinner label='Carregando cards...' />
             ) : (
-                <div className="flex-grow flex w-full h-auto flex-wrap justify-around gap-4 pt-4 flex-row sm:p-44">
+                <div className="flex-grow flex w-full h-auto flex-wrap justify-around gap-4 pt-4 flex-row sm:px-44">
                     <InformationExpenses expenseType={`Previsão de gastos de ${data.month_name}`} amount={data.exit_prediction} invertColor={false} change={data.exit_variation_percent} />
                     <InformationExpenses expenseType={`Previsão de ganhos de ${data.month_name}`} amount={data.entry_prediction} invertColor={true} change={data.entry_variation_percent} />
                 </div>

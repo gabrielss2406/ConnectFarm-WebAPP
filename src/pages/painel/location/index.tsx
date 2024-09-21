@@ -5,6 +5,7 @@ import { DataLocationService } from "@/services/location";
 import { LocationDataType } from "@/schemas/DataAnalysis";
 import 'leaflet/dist/leaflet.css';
 import { Button } from "@/components/shared/ui/button";
+import { LoadingSpinner } from "@/components/shared/components/loading";
 
 // Importar o Leaflet dinamicamente, garantindo que seja carregado apenas no lado do cliente
 const MapContainer = dynamic(() => import("react-leaflet").then(mod => mod.MapContainer), { ssr: false });
@@ -117,7 +118,7 @@ export default function WeightPage() {
                         </div>
                     </div>
                     {/* <div> */}
-                    <MapContainer center={[-22.25933, -45.69096]} zoom={16} style={{ height: "600px", width: "80%", position: "relative" }}>
+                    <MapContainer className="border-2 border-black" center={[-22.25933, -45.69096]} zoom={16} style={{ height: "600px", width: "80%", position: "relative" }}>
                         <TileLayer
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -198,7 +199,7 @@ export default function WeightPage() {
                     {/* </div> */}
                 </div>
             ) : (
-                <p>Carregando...</p>
+                <LoadingSpinner label='Carregando mapa...' />
             )}
         </div>
     );

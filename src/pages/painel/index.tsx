@@ -49,8 +49,8 @@ export default function Home() {
       const storedOrder = localStorage.getItem(`charts-order-financial-${activeFarmId}`);
       const initialCharts = [
         { id: 'Visão geral sobre finanças', component: <FinancialCurrent farm_id={activeFarmId} /> },
+        { id: 'Previsão sobre finanças', component: <FinancialPredict farm_id={activeFarmId} /> },
         { id: 'Tabela das finanças de cada matriz', component: <FinancialAnalysisGrid farm_id={activeFarmId} /> },
-        { id: 'Previsão sobre finanças', component: <FinancialPredict farm_id={activeFarmId} /> }
       ];
 
       if (storedOrder) {
@@ -89,8 +89,8 @@ export default function Home() {
       localStorage.removeItem(`charts-order-financial-${activeFarmId}`);
       setCharts([
         { id: 'Visão geral sobre finanças', component: <FinancialCurrent farm_id={activeFarmId} /> },
+        { id: 'Previsão sobre finanças', component: <FinancialPredict farm_id={activeFarmId} /> },
         { id: 'Tabela das finanças de cada matriz', component: <FinancialAnalysisGrid farm_id={activeFarmId} /> },
-        { id: 'Previsão sobre finanças', component: <FinancialPredict farm_id={activeFarmId} /> }
       ]);
     }
   };
