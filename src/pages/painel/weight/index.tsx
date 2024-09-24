@@ -64,7 +64,8 @@ export default function WeightPage() {
             const storedOrder = localStorage.getItem(`charts-order-weight-${activeFarmId}`);
             const initialCharts = [
                 { id: 'Variação do peso ao longos do tempo', component: <ChartWeightVariation farm_id={activeFarmId} unit={unit} /> },
-                { id: 'Variação do peso por mês do ano', component: <ChartWeightVariationMonth farm_id={activeFarmId} unit={unit} /> }
+                { id: 'Variação do peso por mês do ano', component: <ChartWeightVariationMonth farm_id={activeFarmId} unit={unit} /> },
+                { id: 'Análise e predição dos pesos', component: <WeightGrid farm_id={activeFarmId} unit={unit} /> }
             ];
 
             if (storedOrder) {
@@ -105,7 +106,7 @@ export default function WeightPage() {
             setCharts([
                 { id: 'Variação do peso ao longos do tempo', component: <ChartWeightVariation farm_id={activeFarmId} unit={unit} /> },
                 { id: 'Variação do peso por mês do ano', component: <ChartWeightVariationMonth farm_id={activeFarmId} unit={unit} /> },
-                // { id: '', component: <WeightGrid farm_id={activeFarmId} />}
+                { id: 'Análise e predição dos pesos', component: <WeightGrid farm_id={activeFarmId} unit={unit} /> }
             ]);
         }
     };

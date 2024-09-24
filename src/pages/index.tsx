@@ -1,19 +1,29 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import CardGroup from '@/components/StartPage/CardGroup';
 import Navbar from '@/components/StartPage/Navbar';
 import { IconArrowNarrowDown } from '@tabler/icons-react';
 import Image from 'next/image';
 import Logo from '@/static/logo.png';
+import { useRouter } from 'next/router';
+import { toast } from 'sonner';
 
 
 export default function About() {
   const servicesRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const { error } = router.query;
 
   const scrollToServices = () => {
     if (servicesRef.current) {
       servicesRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  useEffect(() => {
+    if (error === 'login_required') {
+      toast.error('Entra na sua conta primeiro!');
+    }
+  }, [error]);
 
   return (
     <div>
@@ -27,7 +37,7 @@ export default function About() {
           style={{
             background: 'radial-gradient(ellipse at center, rgba(69, 181, 58, 0.65) 0%, rgba(69, 181, 58, 0) 60%)'
           }}
-        >          
+        >
           <div className="mt-4 text-6xl font-semibold flex flex-col items-center">
             <Image className="w-30 h-30 mr-1" src={Logo} alt="connectFarm-logo" />
             ConnectFarm
@@ -36,7 +46,7 @@ export default function About() {
             Painel de análises
           </div>
           <div className="mt-4">
-            <button 
+            <button
               className={`
                 flex pl-5 pr-2 py-2
                 bg-[#A2CE9B] rounded-full
@@ -64,7 +74,7 @@ export default function About() {
             <CardGroup />
           </div>
         </div>
-        <br/><br/><br/>
+        <br /><br /><br />
       </div>
     </div>
   );
