@@ -8,6 +8,7 @@ import Navigation from "@/components/shared/components/navigation";
 import { Grip } from "lucide-react";
 import { useFarms } from "@/hooks/useFarms";
 import CalvesPredictGrid from "@/components/Analysis/calvesPredict";
+import UnitToggleButton from "@/components/shared/components/unit_toogle";
 
 interface ChartItem {
     id: string;
@@ -20,15 +21,21 @@ export default function CalvesPage() {
     const [activeFarmId, setActiveFarmId] = useState<string | null>(null);
     const [charts, setCharts] = useState<ChartItem[]>([]);
     const { farms: farmsData, loading: loadingData, error: errorData } = useFarms();
+    const [unit, setUnit] = useState<string>();
 
-    console.log("oi")
+    useEffect(() => {
+        const storedUnit = localStorage.getItem('unit');
+        if (storedUnit) {
+            setUnit(storedUnit);
+        } else {
+            setUnit('kg'); // Defina uma unidade padrão se não houver
+        }
+    }, []);
 
     useEffect(() => {
         const fetchFarms = async () => {
             try {
                 setFarms(farmsData);
-
-                console.log(farmsData)
 
                 if (farmsData.length > 0) {
                     const firstFarm = farmsData[0];
@@ -40,9 +47,12 @@ export default function CalvesPage() {
             }
         };
 
-        if (farmsData)
-            fetchFarms();
+        if (farmsData) fetchFarms();
     }, [farmsData]);
+
+    const handleUnitChange = (newUnit: string) => {
+        setUnit(newUnit);
+    };
 
     useEffect(() => {
         if (activeFarmId) {
@@ -50,7 +60,7 @@ export default function CalvesPage() {
             const initialCharts = [
                 { id: 'Razão de desmame', component: <ChartCalvesRatio farm_id={activeFarmId} /> },
                 { id: 'Tempo de desmame', component: <ChartCalvesTime farm_id={activeFarmId} /> },
-                { id: "Previsões de peso", component: <CalvesPredictGrid farm_id={activeFarmId} /> }
+                { id: "Previsões de peso", component: <CalvesPredictGrid farm_id={activeFarmId} unit={unit} /> }
             ];
 
             if (storedOrder) {
@@ -61,7 +71,7 @@ export default function CalvesPage() {
                 setCharts(initialCharts);
             }
         }
-    }, [activeFarmId]);
+    }, [activeFarmId, unit]);
 
     const onDragEnd = (result: DropResult) => {
         const { destination, source } = result;
@@ -90,7 +100,7 @@ export default function CalvesPage() {
             setCharts([
                 { id: 'Razão de desmame', component: <ChartCalvesRatio farm_id={activeFarmId} /> },
                 { id: 'Tempo de desmame', component: <ChartCalvesTime farm_id={activeFarmId} /> },
-                { id: "Previsões de peso", component: <CalvesPredictGrid farm_id={activeFarmId} /> }
+                { id: "Previsões de peso", component: <CalvesPredictGrid farm_id={activeFarmId} unit={unit} /> }
             ]);
         }
     };
@@ -110,6 +120,7 @@ export default function CalvesPage() {
                     <button onClick={resetChartsOrder} className="bg-blue-500 text-white p-2 rounded m-2">
                         Resetar Ordem dos Gráficos
                     </button>
+                    <UnitToggleButton onUnitChange={handleUnitChange} currentUnit={unit} />
 
                     <DragDropContext onDragEnd={onDragEnd}>
                         <Droppable droppableId="droppable">

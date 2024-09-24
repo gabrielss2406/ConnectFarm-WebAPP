@@ -9,6 +9,8 @@ import Navigation from "@/components/shared/components/navigation";
 import { Element } from 'react-scroll';
 import { Grip } from "lucide-react";
 import { useFarms } from "@/hooks/useFarms";
+import UnitToggleButton from "@/components/shared/components/unit_toogle";
+import WeightGrid from "@/components/Analysis/weightDataGrid";
 
 interface ChartItem {
     id: string;
@@ -21,6 +23,16 @@ export default function WeightPage() {
     const [activeFarmId, setActiveFarmId] = useState<string | null>(null);
     const [charts, setCharts] = useState<ChartItem[]>([]);
     const { farms: farmsData, loading: loadingData, error: errorData } = useFarms();
+    const [unit, setUnit] = useState<string>();
+
+    useEffect(() => {
+        const storedUnit = localStorage.getItem('unit');
+        if (storedUnit) {
+            setUnit(storedUnit);
+        } else {
+            setUnit('kg'); // Defina uma unidade padrão se não houver
+        }
+    }, []);
 
     useEffect(() => {
         const fetchFarms = async () => {
@@ -43,12 +55,16 @@ export default function WeightPage() {
             fetchFarms();
     }, [farmsData]);
 
+    const handleUnitChange = (newUnit: string) => {
+        setUnit(newUnit);
+    };
+
     useEffect(() => {
         if (activeFarmId) {
             const storedOrder = localStorage.getItem(`charts-order-weight-${activeFarmId}`);
             const initialCharts = [
-                { id: 'Variação do peso ao longos do tempo', component: <ChartWeightVariation farm_id={activeFarmId} /> },
-                { id: 'Variação do peso por mês do ano', component: <ChartWeightVariationMonth farm_id={activeFarmId} /> }
+                { id: 'Variação do peso ao longos do tempo', component: <ChartWeightVariation farm_id={activeFarmId} unit={unit} /> },
+                { id: 'Variação do peso por mês do ano', component: <ChartWeightVariationMonth farm_id={activeFarmId} unit={unit} /> }
             ];
 
             if (storedOrder) {
@@ -59,7 +75,7 @@ export default function WeightPage() {
                 setCharts(initialCharts);
             }
         }
-    }, [activeFarmId]);
+    }, [activeFarmId, unit]);
 
     const onDragEnd = (result: DropResult) => {
         const { destination, source } = result;
@@ -87,8 +103,9 @@ export default function WeightPage() {
         if (activeFarmId) {
             localStorage.removeItem(`charts-order-weight-${activeFarmId}`);
             setCharts([
-                { id: 'Variação do peso ao longos do tempo', component: <ChartWeightVariation farm_id={activeFarmId} /> },
-                { id: 'Variação do peso por mês do ano', component: <ChartWeightVariationMonth farm_id={activeFarmId} /> }
+                { id: 'Variação do peso ao longos do tempo', component: <ChartWeightVariation farm_id={activeFarmId} unit={unit} /> },
+                { id: 'Variação do peso por mês do ano', component: <ChartWeightVariationMonth farm_id={activeFarmId} unit={unit} /> },
+                // { id: '', component: <WeightGrid farm_id={activeFarmId} />}
             ]);
         }
     };
@@ -108,6 +125,7 @@ export default function WeightPage() {
                     <button onClick={resetChartsOrder} className="bg-blue-500 text-white p-2 rounded m-2">
                         Resetar Ordem dos Gráficos
                     </button>
+                    <UnitToggleButton onUnitChange={handleUnitChange} currentUnit={unit} />
 
                     <DragDropContext onDragEnd={onDragEnd}>
                         <Droppable droppableId="droppable">

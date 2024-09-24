@@ -9,9 +9,10 @@ const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 interface ChartWeightVariationMonthProps {
     farm_id: string
+    unit: string
 }
 
-export const ChartWeightVariationMonth: React.FC<ChartWeightVariationMonthProps> = ({ farm_id }) => {
+export const ChartWeightVariationMonth: React.FC<ChartWeightVariationMonthProps> = ({ farm_id, unit }) => {
     const [loading, setLoading] = useState<boolean>(false);
     const [data, setData] = useState<WeightVariationMonthType>([]);
     const dataService = new DataWeightAnalysisService();
@@ -60,7 +61,7 @@ export const ChartWeightVariationMonth: React.FC<ChartWeightVariationMonthProps>
         },
         yaxis: {
             title: {
-                text: 'Peso Médio (kg)'
+                text: `Peso Médio (${unit})`
             }
         },
         stroke: {
@@ -73,7 +74,7 @@ export const ChartWeightVariationMonth: React.FC<ChartWeightVariationMonthProps>
         tooltip: {
             y: {
                 formatter: function (value) {
-                    return value === 0 ? 'Sem registros' : `${value} kg`;
+                    return value === 0 ? 'Sem registros' : `${value} ${unit == "arroba" ? unit + "s" : unit}`;
                 }
             }
         }
@@ -82,7 +83,14 @@ export const ChartWeightVariationMonth: React.FC<ChartWeightVariationMonthProps>
     const chartSeries = [
         {
             name: 'Peso Médio',
-            data: data.map(item => item.average_weight)
+            data: data.map((item) => {
+                if (item.average_weight) {
+                    if (unit == "arroba")
+                        return Number((item.average_weight / 15).toFixed(2))
+                    else return Number(item.average_weight.toFixed(2))
+                }
+                return 0
+            }),
         }
     ];
 

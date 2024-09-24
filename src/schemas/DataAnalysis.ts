@@ -63,6 +63,17 @@ export const HealthHistorySchema = z.object({
   recovery_rate: z.record(z.string(), z.number().min(0).max(100)),
 });
 
+export const HealthSickSchema = z.array(
+  z.object({
+    cattle_number: z.number(),
+    diseases: z.array(z.string()),
+    vaccines: z.array(z.object({
+      type: z.string(),
+      date: z.string()
+    }))
+  })
+)
+
 export const WeightVariationSchema = z.array(
   z.object({
     average_weight: z.number(),
@@ -76,6 +87,17 @@ export const WeightVariationMonthSchema = z.array(
   z.object({
     average_weight: z.number(),
     month: z.number(),
+  })
+)
+
+export const WeightDataSchema = z.array(
+  z.object({
+    number: z.number(),
+    fist_weight: z.number(),
+    last_weight: z.number(),
+    growth_percentage: z.number(),
+    predicted_weight: z.number(),
+    predicted_date: z.string()
   })
 )
 
@@ -142,9 +164,11 @@ export type VaccinesCoverageType = z.infer<typeof VaccinesCoverageSchema>
 export type VaccinesQuarterlyType = z.infer<typeof VaccinesQuarterlySchema>
 
 export type HealthHistoryType = z.infer<typeof HealthHistorySchema>
+export type HealthSickType = z.infer<typeof HealthSickSchema>
 
 export type WeightVariationType = z.infer<typeof WeightVariationSchema>
 export type WeightVariationMonthType = z.infer<typeof WeightVariationMonthSchema>
+export type WeightDataType = z.infer<typeof WeightDataSchema>
 
 export type FinancialByCowType = z.infer<typeof FinancialByCowSchema>
 export type FinancialCurrentType = z.infer<typeof FinancialCurrentSchema>

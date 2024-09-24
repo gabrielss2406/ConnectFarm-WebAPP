@@ -9,9 +9,10 @@ const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 interface ChartWeightVariationProps {
     farm_id: string
+    unit: string
 }
 
-export const ChartWeightVariation: React.FC<ChartWeightVariationProps> = ({ farm_id }) => {
+export const ChartWeightVariation: React.FC<ChartWeightVariationProps> = ({ farm_id, unit }) => {
     const [loading, setLoading] = useState<boolean>(false);
     const [data, setData] = useState<WeightVariationType>([]);
     const dataService = new DataWeightAnalysisService();
@@ -49,15 +50,23 @@ export const ChartWeightVariation: React.FC<ChartWeightVariationProps> = ({ farm
         yaxis: [
             {
                 title: {
-                    text: 'Peso Médio (kg)',
+                    text: `Peso Médio (${unit})`,
                 },
                 opposite: false,
+                labels: {
+                    formatter: (value: number) => String(value.toFixed(2)),
+                },
             },
             {
                 title: {
                     text: 'Precipitação (mm)',
                 },
                 opposite: true,
+                min: 0,
+                max: 60,
+                labels: {
+                    formatter: (value: number) => String(value.toFixed(2)),
+                },
             },
         ],
         stroke: {
@@ -79,13 +88,29 @@ export const ChartWeightVariation: React.FC<ChartWeightVariationProps> = ({ farm
         tooltip: {
             shared: true,
             intersect: false,
+            y: {
+                formatter: (value, { seriesIndex }) => {
+                    if (seriesIndex === 0) {
+                        return `${value.toFixed(2)} ${unit == "arroba" ? unit + "s" : unit}`;
+                    } else {
+                        return `${value.toFixed(2)} mm`;
+                    }
+                },
+            },
         },
     };
 
     const chartSeries = [
         {
             name: 'Peso Médio',
-            data: data.map((item) => item.average_weight ?? 0),
+            data: data.map((item) => {
+                if (item.average_weight) {
+                    if (unit == "arroba")
+                        return item.average_weight / 15
+                    else return item.average_weight
+                }
+                return 0
+            }),
         },
         {
             name: 'Precipitação',

@@ -4,30 +4,11 @@ import { FinancialByCowType } from '@/schemas/DataAnalysis';
 import { DataFinancialAnalysisService } from '@/services/financialAnalysis';
 import { Box, Tooltip } from '@mui/material';
 import { formatCurrency } from '../../helpers/formatCurrency'
+import { localizedTextsMap } from '@/helpers/localizedTextsMap';
 
 interface FinancialGridProps {
     farm_id: string
 }
-
-const localizedTextsMap = {
-    columnMenuUnsort: 'não classificado',
-    columnMenuSortAsc: 'Classificar por ordem crescente',
-    columnMenuSortDesc: 'Classificar por ordem decrescente',
-    columnMenuFilter: 'Filtro',
-    columnMenuHideColumn: 'Ocultar',
-    columnMenuShowColumns: 'Mostrar colunas',
-    columnMenuManageColumns: 'Organizar colunas',
-    noRowsLabel: 'Nenhuma linha',
-    noResultsOverlayLabel: 'Nenhum resultado encontrado',
-    errorOverlayDefaultLabel: 'Ocorreu um erro',
-    footerRowSelected: (count: number) => `${count} linha(s) selecionada(s)`,
-    footerTotalRows: 'Total de linhas: {{count}}',
-    rowsPerPage: 'Linhas por página:',
-    MuiTablePagination: {
-        labelDisplayedRows: ({ from, to, count }) => `${from}–${to} de ${count}`,
-        labelRowsPerPage: "Linhas por página"
-    },
-};
 
 const FinancialAnalysisGrid: React.FC<FinancialGridProps> = ({ farm_id }) => {
     const [data, setData] = useState<FinancialByCowType>([]);
@@ -168,7 +149,7 @@ const FinancialAnalysisGrid: React.FC<FinancialGridProps> = ({ farm_id }) => {
     ];
 
     return (
-        <div style={{ height: 600, width: '100%' }}>
+        <div style={{ height: 500, width: '100%' }}>
             <DataGrid
                 rows={data}
                 columns={columns}

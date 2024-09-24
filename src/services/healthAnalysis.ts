@@ -1,7 +1,7 @@
 import api from './api';
 import Cookies from 'js-cookie';
 import dotenv from 'dotenv';
-import { HealthHistoryType } from '@/schemas/DataAnalysis';
+import { HealthHistoryType, HealthSickType } from '@/schemas/DataAnalysis';
 
 dotenv.config();
 
@@ -24,6 +24,16 @@ export class DataHealthAnalysisService {
       return response.data;
     } catch (error) {
       throw new Error('Error on analysis of health history');
+    }
+  }
+
+  public async analysisSick(farm_id: string): Promise<HealthSickType> {
+    try {
+      const response = await api.get(`/data/${farm_id}/health/sick`);
+
+      return response.data;
+    } catch (error) {
+      throw new Error('Error on analysis of health sicks');
     }
   }
 }

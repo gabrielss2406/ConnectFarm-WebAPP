@@ -9,6 +9,7 @@ import Navigation from "@/components/shared/components/navigation";
 import { Grip } from "lucide-react";
 import FinancialPredict from "@/components/Analysis/financialPredict";
 import { useFarms } from "@/hooks/useFarms";
+import UnitToggleButton from "@/components/shared/components/unit_toogle";
 
 interface ChartItem {
   id: string;

@@ -6,6 +6,7 @@ import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautif
 import Navigation from "@/components/shared/components/navigation";
 import { Grip } from "lucide-react";
 import { useFarms } from "@/hooks/useFarms";
+import HealthAnalysisGrid from "@/components/Analysis/healthSickDataGrid";
 
 // Define the type for a chart item
 interface ChartItem {
@@ -45,7 +46,8 @@ export default function HealthPage() {
         if (activeFarmId) {
             const storedOrder = localStorage.getItem(`charts-order-health-${activeFarmId}`);
             const initialCharts = [
-                { id: 'Incidência de doenças e taxas de recuperação', component: <ChartHealthHistory farm_id={activeFarmId} /> }
+                { id: 'Incidência de doenças e taxas de recuperação', component: <ChartHealthHistory farm_id={activeFarmId} /> },
+                { id: 'Vacas não recuperadas', component: <HealthAnalysisGrid farm_id={activeFarmId} /> }
             ];
 
             if (storedOrder) {
@@ -83,7 +85,8 @@ export default function HealthPage() {
         if (activeFarmId) {
             localStorage.removeItem(`charts-order-health-${activeFarmId}`);
             setCharts([
-                { id: 'Incidência de doenças e taxas de recuperação', component: <ChartHealthHistory farm_id={activeFarmId} /> }
+                { id: 'Incidência de doenças e taxas de recuperação', component: <ChartHealthHistory farm_id={activeFarmId} /> },
+                { id: 'Vacas não recuperadas', component: <HealthAnalysisGrid farm_id={activeFarmId} /> }
             ]);
         }
     };
