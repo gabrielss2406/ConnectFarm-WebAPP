@@ -16,8 +16,15 @@ const DemoLogin = () => {
                 };
 
                 const userService = new UserService()
-                await userService.logout();
-                await userService.login(demoCredentials.email, demoCredentials.password)
+                const loginResponse = await userService.login(demoCredentials.email, demoCredentials.password)
+
+                if (loginResponse?.token) {
+                    toast.success("Usuário logado na demo com sucesso!");
+
+                    setTimeout(() => {
+                        router.push("/painel");
+                    }, 100);
+                }
 
                 router.push("/painel");
                 toast.success("Usuário logado na demo com sucesso!");
