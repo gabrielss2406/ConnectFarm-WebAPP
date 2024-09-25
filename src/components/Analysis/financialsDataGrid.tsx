@@ -33,12 +33,24 @@ const FinancialAnalysisGrid: React.FC<FinancialGridProps> = ({ farm_id }) => {
 
     const getColorByCategory = (category: string) => {
         switch (category) {
-            case 'feeding':
-                return '#4caf50';
-            case 'vaccines':
-                return '#f44336';
+            case 'Alimentação':
+                return '#4caf50'; // Verde para alimentação
+            case 'Saúde animal':
+                return '#ff9800'; // Laranja para saúde animal
+            case 'Vacinação':
+                return '#f44336'; // Vermelho para vacinação
+            case 'Reprodução':
+                return '#9c27b0'; // Roxo para reprodução
+            case 'Manutenção das pastagens':
+                return '#8bc34a'; // Verde claro para manutenção das pastagens
+            case 'Custos de mão-de-obra':
+                return '#ffeb3b'; // Amarelo para custos de mão-de-obra
+            case 'Transporte do gado':
+                return '#00bcd4'; // Azul claro para transporte do gado
+            case 'Suplementação':
+                return '#3f51b5'; // Azul escuro para suplementação
             default:
-                return '#2196f3';
+                return '#2196f3'; // Azul padrão para outras categorias
         }
     };
 
