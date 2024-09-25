@@ -49,6 +49,10 @@ const FinancialAnalysisGrid: React.FC<FinancialGridProps> = ({ farm_id }) => {
                 return '#00bcd4'; // Azul claro para transporte do gado
             case 'Suplementação':
                 return '#3f51b5'; // Azul escuro para suplementação
+            case 'Lucro com produção':
+                return '#ff5722'; // Laranja escuro para lucro com produção
+            case 'Lucro com venda de gado':
+                return '#673ab7'; // Roxo escuro para lucro com venda de gado
             default:
                 return '#2196f3'; // Azul padrão para outras categorias
         }
