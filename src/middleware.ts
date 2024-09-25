@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export default async function middleware(request: NextRequest) {
-    const token = request.cookies.get('_cnctfarm_token');
+    // const token = request.cookies.get('_cnctfarm_token');
 
-    if (!token) {
-        return NextResponse.redirect(new URL('/?error=login_required', request.url));
-    }
+    // if (!token) {
+    //     return NextResponse.redirect(new URL('/?error=login_required', request.url));
+    // }
 
     return NextResponse.next();
 }
 
 export const config = {
-    matcher: ['/painel/:path*', '/painel'],
+    matcher: ['/painel/:path*'],
 };
