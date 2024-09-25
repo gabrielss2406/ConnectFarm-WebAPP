@@ -14,7 +14,7 @@ const plans: Plan[] = [
         id: 1,
         name: 'Plano inicial',
         description: 'Ideal para pequenos produtores que precisam de mais organização',
-        price: 'R$ 19,90/mês',
+        price: 'R$ 29,90/mês',
         features: [
             'Ferramentas de gestão do aplicativo',
             'Painel Web para visualização dos dados',
@@ -24,7 +24,7 @@ const plans: Plan[] = [
         id: 2,
         name: 'Plano Avançado',
         description: 'Ideal para os que querem entender melhor seu negócio sem gastar com infraestrutura',
-        price: 'R$ 49,90/mês',
+        price: 'R$ 79,90/mês',
         features: [
             'Ferramentas de gestão do aplicativo',
             'Painel Web para visualização dos dados',
@@ -36,7 +36,7 @@ const plans: Plan[] = [
         id: 3,
         name: 'Plano Premium',
         description: 'Ideal para os que precisam juntar uma coleta mais automatizada com analises completas do negócio',
-        price: 'R$ 99,90/mês',
+        price: 'R$ 109,90/mês',
         features: [
             'Ferramentas de gestão do aplicativo',
             'Painel Web para visualização dos dados',

@@ -118,7 +118,7 @@ export default function WeightPage() {
                         </div>
                     </div>
                     {/* <div> */}
-                    <MapContainer className="border-2 border-black" center={[-22.25933, -45.69096]} zoom={16} style={{ height: "600px", width: "80%", position: "relative" }}>
+                    <MapContainer className="border-2 border-black" center={[-22.256619, -45.695792]} maxZoom={160} zoom={18} style={{ height: "600px", width: "80%", position: "relative" }}>
                         <TileLayer
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -126,12 +126,12 @@ export default function WeightPage() {
                         {locations.locations?.map((location) => {
                             const isOutside = isOutOfBounds(location.latitude, location.longitude, {
                                 bottom_right: {
-                                    latitude: -22.26231086486486,
-                                    longitude: -45.687739110705834,
+                                    latitude: -22.256728,
+                                    longitude: -45.695662,
                                 },
                                 top_left: {
-                                    latitude: -22.256145315315315,
-                                    longitude: -45.69440112104077,
+                                    latitude: -22.256449,
+                                    longitude: -45.695957,
                                 }
                             });
                             return (
@@ -159,8 +159,8 @@ export default function WeightPage() {
                         })}
                         <Rectangle
                             bounds={[
-                                [-22.256145315315315, -45.69440112104077], // Extremo superior esquerdo
-                                [-22.26231086486486, -45.687739110705834]  // Extremo inferior direito
+                                [-22.256449, -45.695957], // Extremo superior esquerdo
+                                [-22.256728, -45.695663]  // Extremo inferior direito
                             ]}
                             color="green"
                             fillColor="green"
@@ -200,7 +200,8 @@ export default function WeightPage() {
                 </div>
             ) : (
                 <LoadingSpinner label='Carregando mapa...' />
-            )}
-        </div>
+            )
+            }
+        </div >
     );
 }
