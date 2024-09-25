@@ -23,7 +23,7 @@ const DemoLogin = () => {
 
                     setTimeout(() => {
                         router.push("/painel");
-                    }, 100);
+                    }, 1000);
                 }
 
                 router.push("/painel");
