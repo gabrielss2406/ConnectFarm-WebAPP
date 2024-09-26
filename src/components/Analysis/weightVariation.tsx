@@ -63,7 +63,7 @@ export const ChartWeightVariation: React.FC<ChartWeightVariationProps> = ({ farm
                 },
                 opposite: true,
                 min: 0,
-                max: 60,
+                max: 150,
                 labels: {
                     formatter: (value: number) => String(value.toFixed(2)),
                 },
