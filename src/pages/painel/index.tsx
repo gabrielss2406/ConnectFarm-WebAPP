@@ -1,6 +1,5 @@
 import { SelectFarm } from "@/components/PainelPage/SelectFarm";
 import { useState, useEffect } from "react";
-import { FarmService } from '@/services/farm'
 import { LoadingSpinner } from "@/components/shared/components/loading";
 import FinancialAnalysisGrid from "@/components/Analysis/financialsDataGrid";
 import FinancialCurrent from "@/components/Analysis/financialsCards";
@@ -9,7 +8,7 @@ import Navigation from "@/components/shared/components/navigation";
 import { Grip } from "lucide-react";
 import FinancialPredict from "@/components/Analysis/financialPredict";
 import { useFarms } from "@/hooks/useFarms";
-import UnitToggleButton from "@/components/shared/components/unit_toogle";
+import { ArrobaPriceCard } from "@/components/Analysis/currentArroba";
 
 interface ChartItem {
   id: string;
@@ -28,8 +27,6 @@ export default function Home() {
     const fetchFarms = async () => {
       try {
         setFarms(farmsData);
-
-        console.log(farmsData)
 
         if (farmsData.length > 0) {
           const firstFarm = farmsData[0];
@@ -51,6 +48,7 @@ export default function Home() {
       const initialCharts = [
         { id: 'Visão geral sobre finanças', component: <FinancialCurrent farm_id={activeFarmId} /> },
         { id: 'Previsão sobre finanças', component: <FinancialPredict farm_id={activeFarmId} /> },
+        { id: 'Preço da arroba do boi', component: <ArrobaPriceCard /> },
         { id: 'Tabela das finanças de cada matriz', component: <FinancialAnalysisGrid farm_id={activeFarmId} /> },
       ];
 
@@ -91,6 +89,7 @@ export default function Home() {
       setCharts([
         { id: 'Visão geral sobre finanças', component: <FinancialCurrent farm_id={activeFarmId} /> },
         { id: 'Previsão sobre finanças', component: <FinancialPredict farm_id={activeFarmId} /> },
+        { id: 'Preço da arroba do boi', component: <ArrobaPriceCard /> },
         { id: 'Tabela das finanças de cada matriz', component: <FinancialAnalysisGrid farm_id={activeFarmId} /> },
       ]);
     }
