@@ -12,37 +12,30 @@ export interface Plan {
 const plans: Plan[] = [
     {
         id: 1,
-        name: 'Plano inicial',
-        description: 'Ideal para pequenos produtores que precisam de mais organização',
-        price: 'R$ 24,90/mês',
+        name: 'Plano simples',
+        description: 'Plano com todo o pacote de software',
+        price: 'R$ 199,90/mês',
         features: [
             'Ferramentas de gestão do aplicativo',
             'Painel Web para visualização dos dados',
+            'Análise de dados',
+            'Análise preditiva',
+            'Suporte ao cliente'
         ],
     },
     {
         id: 2,
-        name: 'Plano Avançado',
-        description: 'Ideal para os que querem entender melhor seu negócio sem gastar com infraestrutura',
-        price: 'R$ 49,90/mês',
+        name: 'Plano Composto',
+        description: 'Plano com os adicionais de hardware',
+        price: 'R$ 199,90/mês + Orçamento com a equipe',
         features: [
             'Ferramentas de gestão do aplicativo',
             'Painel Web para visualização dos dados',
-            'Painel Web para analises preditivas',
-            'Painel Web para correlação de dados'
-        ],
-    },
-    {
-        id: 3,
-        name: 'Plano Premium',
-        description: 'Ideal para os que precisam juntar uma coleta mais automatizada com analises completas do negócio',
-        price: 'R$ 99,90/mês, Hardware a parte',
-        features: [
-            'Ferramentas de gestão do aplicativo',
-            'Painel Web para visualização dos dados',
-            'Painel Web para analises preditivas',
-            'Painel Web para correlação de dados',
-            'Integração com hardware'
+            'Análise de dados',
+            'Análise preditiva',
+            'Suporte ao cliente',
+            'Hardwares integrados*',
+            'Hardwares ConnectFarm'
         ],
     },
 ];
